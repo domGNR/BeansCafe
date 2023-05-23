@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->unsignedBigInteger('address_id');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('order_statuses')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +33,7 @@ return new class extends Migration
         Schema::table('orders', function(Blueprint $table){
             $table->dropForeign(['client_id']);
             $table->dropForeign(['address_id']);
+            $table->dropForeign(['status_id']);
         });
         Schema::dropIfExists('orders');
     }

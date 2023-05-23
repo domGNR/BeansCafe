@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('zip');
             $table->string('city');
             $table->string('country');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,7 +31,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('addresses', function(Blueprint $table){
-            $table->dropForeign(['user_id']);
+            $table->dropForeign(['client_id']);
         });
         Schema::dropIfExists('addresses');
     }

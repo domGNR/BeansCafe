@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('phone');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('address_id');
-            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,7 +30,6 @@ return new class extends Migration
     {
         Schema::table('clients', function(Blueprint $table){
             $table->dropForeign(['user_id']);
-            $table->dropForeign(['address_id']);
         });
         Schema::dropIfExists('clients');
     }

@@ -1,1 +1,18 @@
 import './bootstrap';
+import './jquery.min.js';
+import './jquery-migrate-3.0.1.min.js';
+import './popper.min.js';
+import './bootstrap.min.js';
+import './jquery.easing.1.3.js';
+import './jquery.waypoints.min.js';
+import './jquery.stellar.min.js';
+import './owl.carousel.min.js';
+import './jquery.magnific-popup.min.js';
+import './aos.js';
+import './jquery.animateNumber.min.js';
+import './bootstrap-datepicker.js';
+import './jquery.timepicker.min.js';
+import './scrollax.min.js';
+// import 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false';
+import './google-map.js';
+import './main.js';
