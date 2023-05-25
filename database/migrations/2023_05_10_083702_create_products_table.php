@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('stock_qty');
             $table->float('price',2);
+            $table->boolean('is_show');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->unsignedBigInteger('category_id');
