@@ -13,6 +13,10 @@ class Brand extends Model
     /**
      * Get the product that owns the brand.
      */
+
+     protected $fillable = ['name'];
+
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

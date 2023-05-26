@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class BrandController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // dd( array_keys(DB::table('brands')->get()[0]));
-        return DB::table('brands')->get();
+        return User::get()
+            ->map
+            ->only(['id', 'name', 'email', 'role']);
     }
 
     /**
@@ -22,7 +22,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -30,13 +30,13 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        Brand::create($request->post());
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Brand $brand)
+    public function show(User $user)
     {
         //
     }
@@ -44,25 +44,27 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Brand $brand)
+    public function edit(User $user)
     {
-
+        return $user->only(['id', 'name', 'email', 'role']);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, User $user)
     {
-        $brand->name = $request['name'];
-        $brand->save();
+        //$user->update($request->all())
+        $user->name = $request['name'];
+        // $user->role = $request['role'];
+        $user->save();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Brand $brand)
+    public function destroy(User $user)
     {
-        $brand->delete();
+        //
     }
 }

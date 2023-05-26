@@ -12,7 +12,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::all();
+        return view('dashboard.clients.show', compact('clients'));
     }
 
     /**
@@ -43,8 +44,8 @@ class ClientController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Client $client)
-    {
-        //
+    {;
+        return view('dashboard.clients.edit', compact('client'));
     }
 
     /**
