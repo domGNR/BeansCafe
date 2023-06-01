@@ -23,8 +23,13 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard.home');
 
 
-// clients
-Route::get('/dashboard/users', [DashboardController::class,'showUsers'])->name('dashboard.users.show');
+//rotte dropzone
+// Route::get('/images', [PhotoController::class,'index'])->name('images');
+// Route::post('/images/upload', [PhotoController::class,'store'])->name('images.upload');
+// Route::delete('/images/remove', [PhotoController::class,'destroy'])->name('images.remove');
+
+// Users
+Route::get('/dashboard/users', [DashboardController::class,'indexUsers'])->name('dashboard.users.index');
 Route::get('/dashboard/users/{user}', [DashboardController::class,'editUser'])->name('dashboard.users.edit');
 Route::post('/dashboard/users/{user}/update', [DashboardController::class,'updateUser'])->name('dashboard.users.update');
 
@@ -35,16 +40,28 @@ Route::post('/dashboard/users/{user}/update', [DashboardController::class,'updat
 // Route::post('/dashboard/clients/{client}/delete', [DashboardController::class,'deleteClient'])->name('dashboard.clients.delete');
 
 // Brands
-Route::get('/dashboard/brands', [DashboardController::class,'showBrands'])->name('dashboard.brands.show');
-Route::get('/dashboard/brands/create', [DashboardController::class,'createBrand'])->name('dashboard.brands.create');
+Route::get('/dashboard/brands', [DashboardController::class,'indexBrands'])->name('dashboard.brands.index');
 Route::get('/dashboard/brands/{brand}', [DashboardController::class,'editBrand'])->name('dashboard.brands.edit');
 Route::post('/dashboard/brands/store', [DashboardController::class,'storeBrand'])->name('dashboard.brands.store');
 Route::post('/dashboard/brands/{brand}/update', [DashboardController::class,'updateBrand'])->name('dashboard.brands.update');
 Route::delete('/dashboard/brands/{brand}/delete', [DashboardController::class,'destroyBrand'])->name('dashboard.brands.destroy');
 
-
 // Categories
+Route::get('/dashboard/categories', [DashboardController::class,'indexCategories'])->name('dashboard.categories.index');
+Route::get('/dashboard/categories/{category}', [DashboardController::class,'editCategory'])->name('dashboard.categories.edit');
+Route::post('/dashboard/categories/store', [DashboardController::class,'storeCategory'])->name('dashboard.categories.store');
+Route::post('/dashboard/categories/{category}/update', [DashboardController::class,'updateCategory'])->name('dashboard.categories.update');
+Route::delete('/dashboard/categories/{category}/delete', [DashboardController::class,'destroyCategory'])->name('dashboard.categories.destroy');
+
+
 // Products
+Route::get('/dashboard/products', [DashboardController::class,'indexProducts'])->name('dashboard.products.index');
+Route::get('/dashboard/products/{product}', [DashboardController::class,'editProduct'])->name('dashboard.products.edit');
+Route::post('/dashboard/products/store', [DashboardController::class,'storeProduct'])->name('dashboard.products.store');
+Route::post('/dashboard/products/{product}/update', [DashboardController::class,'updateProduct'])->name('dashboard.products.update');
+Route::delete('/dashboard/products/{product}/delete', [DashboardController::class,'destroyProduct'])->name('dashboard.products.destroy');
+
+
 // Photos
 // Orders
 // Addresses

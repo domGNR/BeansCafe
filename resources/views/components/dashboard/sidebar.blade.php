@@ -9,58 +9,40 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
-                    Creative Tim
+                <a href="{{route("dashboard.home")}}" class="simple-text">
+                    BeansCafe
                 </a>
             </div>
 
             <ul class="nav">
-                <li class="active">
-                    <a href="dashboard.html">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
+                <li class={{ Request::is('dashboard/users') ? 'active' : '' }}>
+                    <a href="{{route("dashboard.users.index")}}">
+                        {{-- <i class="pe-7s-graph"></i> --}}
+                        <p>Users</p>
                     </a>
                 </li>
-                <li>
+                <li class={{ Request::is('dashboard/orders') ? 'active' : '' }}>
                     <a href="user.html">
-                        <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
+                        {{-- <i class="pe-7s-user"></i> --}}
+                        <p>Orders</p>
                     </a>
                 </li>
-                <li>
-                    <a href="table.html">
-                        <i class="pe-7s-note2"></i>
-                        <p>Table List</p>
+                <li class={{ Request::is('dashboard/products') ? 'active' : '' }}>
+                    <a href="{{route("dashboard.products.index")}}">
+                        {{-- <i class="pe-7s-note2"></i> --}}
+                        <p>Products</p>
                     </a>
                 </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
+                <li class={{ Request::is('dashboard/brands') ? 'active' : '' }}>
+                    <a href="{{route("dashboard.brands.index")}}">
+                        {{-- <i class="pe-7s-news-paper"></i> --}}
+                        <p>Brands</p>
                     </a>
                 </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
+                <li class={{ Request::is('dashboard/categories') ? 'active' : '' }}>
+                    <a href="{{route("dashboard.categories.index")}}">
+                        {{-- <i class="pe-7s-science"></i> --}}
+                        <p>Categories</p>
                     </a>
                 </li>
             </ul>

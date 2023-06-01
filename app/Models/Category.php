@@ -14,6 +14,8 @@ class Category extends Model
     /**
      * Get the product that owns the category.
      */
+    protected $fillable = ['name','description'];
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

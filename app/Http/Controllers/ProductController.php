@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -12,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return DB::table('products')->get();
+        // return Product::with('category')->latest()->paginate(10);
     }
 
     /**
@@ -28,7 +32,38 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = '';
+        if ($request->hasFile("cover_image")) {
+            $file = $request->file("cover_image");
+            $imageName = time() . '_' . $file->getClientOriginalName();
+            $file->move(\public_path("cover/"), $imageName);
+
+
+            $product = new Product([
+                "name" => $request->name,
+                "description" => $request->description,
+                "stock_qty" => $request->stock_qty,
+                "cover" => $imageName,
+                "price" => $request->price,
+                "is_show" => $request->active == 'on' ? true : false,
+                "brand_id" => $request->brand_id,
+                "category_id" => $request->category_id
+            ]);
+            $product->save();
+            $id = $product->id;
+            if ($request->hasFile("images")) {
+                $files = $request->file("images");
+                foreach ($files as $file) {
+                    $imageName = time() . '_' . $file->getClientOriginalName();
+                    $file->move(\public_path("/images"), $imageName);
+                    $photo=new Photo([
+                        "product_id"=>$id,
+                        "url"=>$imageName
+                    ]);
+                    $photo->save();
+                }
+            }
+        }
     }
 
     /**
@@ -60,6 +95,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
     }
 }
