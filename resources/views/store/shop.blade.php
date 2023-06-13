@@ -48,19 +48,19 @@
                 <div class="col-lg-12 ftco-animate p-md-5">
                     <div class="row">
                         <div class="col-md-12 nav-link-wrap mb-5">
-                            <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab"
-                                role="tablist" aria-orientation="vertical">
-                                {{$first = $categories[0]}}
-                                @foreach ($categories as $category)
-                                    <a class="nav-link {{$category->id==$first->id ? 'active' : '' }}" id={{ 'pill-'.$category->slug . '-tab' }} data-toggle="pill"
-                                        href={{ '#' . $category->slug }} role="tab">{{ $category->name }}</a>
-                                @endforeach
-                            </div>
+                            @if (count($products) > 0)
+                                <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab"
+                                    role="tablist" aria-orientation="vertical">
+                                    {{ $first = $categories[0] }}
+                                    @foreach ($categories as $category)
+                                        <a class="nav-link {{ $category->id == $first->id ? 'active' : '' }}"
+                                            id={{ 'pill-' . $category->slug . '-tab' }} data-toggle="pill"
+                                            href={{ '#' . $category->slug }} role="tab">{{ $category->name }}</a>
+                                    @endforeach
+                                </div>
                         </div>
                         <div class="col-md-12 d-flex align-items-center">
-
                             <div class="tab-content ftco-animate" id="v-pills-tabContent">
-
                                 @foreach ($categories as $category)
                                     <div class="tab-pane fade show" id={{ $category->slug }} role="tabpanel">
                                         <div class="row">
@@ -69,15 +69,19 @@
                                                     <div class="col-md-3">
                                                         <div class="menu-entry">
                                                             <a href="#" class="img"
-                                                            style="background-image: url( {{asset('assets/store/images/products/'. $product->cover ) }} );"></a>
+                                                                style="background-image: url( {{ asset('assets/store/images/products/' . $product->cover) }} );"></a>
                                                             <div class="text text-center pt-4">
-                                                                <h3><a href="product-single.html">{{$product->name}}</a>
+                                                                <h3><a
+                                                                        href="product-single.html">{{ $product->name }}</a>
                                                                 </h3>
-                                                                <p>{{$product->description}}</p>
-                                                                <p class="price"><span>€ {{$product->price}}</span></p>
-                                                                <button onClick="addToCart((createItem({{$product->id}},{{$product->price}},{{$product->id}})))" href="cart.html"
-                                                                        class="btn btn-primary btn-outline-primary">Add
-                                                                        to Cart</button>
+                                                                <p>{{ $product->description }}</p>
+                                                                <p class="price"><span>€ {{ $product->price }}</span>
+                                                                </p>
+                                                                <button
+                                                                    onClick="addToCart((createItem({{ $product->id }},{{ $product->price }},{{ $product->id }})))"
+                                                                    href="cart.html"
+                                                                    class="btn btn-primary btn-outline-primary">Add
+                                                                    to Cart</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -88,6 +92,9 @@
                                 @endforeach
                             </div>
                         </div>
+                    @else
+                        <h3>Non ci sono prodotti da visualizzare</h3>
+                        @endif
                     </div>
                 </div>
             </div>

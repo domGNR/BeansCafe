@@ -24,6 +24,13 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="slug" style="text-transform:capitalize">slug</label>
+                            <input type="text" class="form-control" name="slug" value="{{ $product->slug }}">
+                            @error('slug')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="description" style="text-transform:capitalize">description</label>
                             <input type="text" class="form-control" name="name"
                                 value="{{ $product->description }}">
