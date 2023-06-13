@@ -12,6 +12,13 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="slug" style="text-transform:capitalize">slug</label>
+                            <input type="text" class="form-control" name="slug" value="{{ $brand->slug }}">
+                            @error('slug')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <button class="btn btn-primary m-3 d-block">Aggiorna</button>
                     </form>
                     <form action="{{route('dashboard.brands.destroy', $brand)}}" enctype="multipart/form-data" method="POST">

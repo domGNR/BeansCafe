@@ -25,7 +25,7 @@
             </ul>
         </nav>
         <p class="copyright pull-right">
-            &copy; <script>document.write(new Date().getFullYear())</script> <a href="{{route("home")}}">BeansCafe</a>
+            &copy; <script>document.write(new Date().getFullYear())</script> <a href="{{route("store.home")}}">BeansCafe</a>
         </p>
     </div>
 </footer>

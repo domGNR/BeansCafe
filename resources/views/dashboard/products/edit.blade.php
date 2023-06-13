@@ -5,11 +5,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form enctype="multipart/form-data" method="POST" action="{{route('dashboard.categories.update', $product->id)}}">
+                    <form enctype="multipart/form-data" method="POST"
+                        action="{{ route('dashboard.categories.update', $product->id) }}">
                         @csrf
                         <div class="form-group">
                             <label for="id" style="text-transform:capitalize">id</label>
-                            <input type="text" class="form-control" name="id" value="{{ $product->id }} disabled0">
+                            <input type="text" class="form-control" name="id"
+                                value="{{ $product->id }} disabled0">
                             @error('id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -23,7 +25,8 @@
                         </div>
                         <div class="form-group">
                             <label for="description" style="text-transform:capitalize">description</label>
-                            <input type="text" class="form-control" name="name" value="{{ $product->description }}">
+                            <input type="text" class="form-control" name="name"
+                                value="{{ $product->description }}">
                             @error('description')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -66,11 +69,29 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div>cover image</div>
-                        <div>images</div>
+                        <div class="form-group">
+                            <label for="cover_photo" class="d-block" style="text-transform:capitalize">cover
+                                foto</label>
+                            <div class="d-block"><img name="cover_photo"
+                                    src="{{ asset('assets/store/images/products/' . $product->cover) }}" alt=""
+                                    class="" height="300"></div>
+                        </div>
+                        <div>
+                            <label for="cover_photo" class="d-block" style="text-transform:capitalize">gallery
+                                foto</label>
+                            <div class="row">
+                                @foreach ($product->photos as $photo)
+                                <div class="col m-5">
+                                    <img name="cover_photo" class="m-5"
+                                    src="{{ asset('assets/store/images/products/' . $photo->url) }}" alt="" height="300">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
                         <button class="btn btn-primary m-3 d-block">Aggiorna</button>
                     </form>
-                    <form action="{{route('dashboard.categories.destroy', $product)}}" enctype="multipart/form-data" method="POST">
+                    <form action="{{ route('dashboard.categories.destroy', $product) }}" enctype="multipart/form-data"
+                        method="POST">
                         @csrf
                         @method('delete')
                         <button class="btn btn-danger my-5 d-block">Elimina</button>

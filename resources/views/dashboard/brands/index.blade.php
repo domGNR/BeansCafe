@@ -12,6 +12,13 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="slug" style="text-transform:capitalize">slug</label>
+                            <input type="text" class="form-control" name="slug">
+                            @error('slug')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <button class="btn btn-primary mb-3 d-block">Aggiungi</button>
                     </form>
                 </div>

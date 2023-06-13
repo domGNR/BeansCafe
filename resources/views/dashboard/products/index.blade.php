@@ -5,9 +5,6 @@
                 <div class="col-md-12">
                     <form enctype="multipart/form-data" method="POST" action="{{ route('dashboard.products.store') }}">
                         @csrf
-                        <input type="hidden"
-                        name="uniqueSecret"
-                        value="{{$uniqueSecret}}">
                         <div class="form-group">
                             <label for="name" style="text-transform:capitalize">nome</label>
                             <input type="text" class="form-control" name="name">
@@ -104,9 +101,17 @@
                                     @foreach ($products as $product)
                                         <tr class="clickable-row"
                                             data-href="{{ route('dashboard.products.edit', $product->id) }}">
-                                            @foreach ($product as $value)
-                                                <td>{{ $value }}</td>
-                                            @endforeach
+                                            <td>{{$product->id}}</td>
+                                            <td>{{$product->name}}</td>
+                                            <td>{{$product->description}}</td>
+                                            <td>{{$product->stock_qty}}</td>
+                                            <td>{{$product->price}}</td>
+                                            <td>{{$product->cover}}</td>
+                                            <td>{{$product->is_show}}</td>
+                                            <td>{{$product->brand_id}}</td>
+                                            <td>{{$product->category_id}}</td>
+                                            <td>{{$product->created_at}}</td>
+                                            <td>{{$product->updated_at}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

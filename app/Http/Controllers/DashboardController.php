@@ -136,6 +136,7 @@ class DashboardController extends Controller
     public function indexProducts()
     {
         $products = $this->productController->index();
+        //dd($products);
         $categories = $this->categoryController->index();
         $brands = $this->brandController->index();
         return view('dashboard.products.index', compact('products','categories','brands'));

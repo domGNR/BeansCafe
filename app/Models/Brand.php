@@ -14,7 +14,7 @@ class Brand extends Model
      * Get the product that owns the brand.
      */
 
-     protected $fillable = ['name'];
+     protected $fillable = ['name','slug'];
 
 
     public function product(): BelongsTo

@@ -11,10 +11,15 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        // $this->middleware('auth');
-    }
+
+     private $productController;
+     private $categoryController;
+     public function __construct(CategoryController $categoryController,ProductController $productController)
+     {
+         $this->categoryController = $categoryController;
+         $this->productController = $productController;
+         // $this->middleware('auth');
+     }
 
     /**
      * Show the application dashboard.
@@ -25,4 +30,17 @@ class HomeController extends Controller
     {
         return view('store.home');
     }
+
+    public function indexShop()
+    {
+        $categories = $this->categoryController->index();
+        $products = $this->productController->index();
+        return view('store.shop',compact('categories','products'));
+    }
+
+    public function cart()
+    {
+        return view('store.cart');
+    }
+    
 }

@@ -18,16 +18,12 @@ use App\Http\Controllers\DashboardController;
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('store.home');
+
+Route::get('/shop', [HomeController::class,'indexShop'])->name('store.shop');
+Route::get('/shop/cart', [HomeController::class,'cart'])->name('store.cart');
 
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard.home');
-
-
-//rotte dropzone
-// Route::get('/images', [PhotoController::class,'index'])->name('images');
-// Route::post('/images/upload', [PhotoController::class,'store'])->name('images.upload');
-// Route::delete('/images/remove', [PhotoController::class,'destroy'])->name('images.remove');
-
 // Users
 Route::get('/dashboard/users', [DashboardController::class,'indexUsers'])->name('dashboard.users.index');
 Route::get('/dashboard/users/{user}', [DashboardController::class,'editUser'])->name('dashboard.users.edit');

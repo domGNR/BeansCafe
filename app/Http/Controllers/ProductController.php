@@ -15,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return DB::table('products')->get();
-        // return Product::with('category')->latest()->paginate(10);
+        // return DB::table('products')->get();
+         return Product::with('category')->get();
     }
 
     /**
@@ -36,7 +36,7 @@ class ProductController extends Controller
         if ($request->hasFile("cover_image")) {
             $file = $request->file("cover_image");
             $imageName = time() . '_' . $file->getClientOriginalName();
-            $file->move(\public_path("cover/"), $imageName);
+            $file->move(\public_path("assets/store/images/products/"), $imageName);
 
 
             $product = new Product([
@@ -55,7 +55,7 @@ class ProductController extends Controller
                 $files = $request->file("images");
                 foreach ($files as $file) {
                     $imageName = time() . '_' . $file->getClientOriginalName();
-                    $file->move(\public_path("/images"), $imageName);
+                    $file->move(\public_path("assets/store/images/products/"), $imageName);
                     $photo=new Photo([
                         "product_id"=>$id,
                         "url"=>$imageName
