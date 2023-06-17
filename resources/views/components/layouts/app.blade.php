@@ -63,6 +63,7 @@
     <script src={{ asset('assets/store/js/jquery.waypoints.min.js') }}></script>
     <script src={{ asset('assets/store/js/jquery.stellar.min.js') }}></script>
     <script src={{ asset('assets/store/js/owl.carousel.min.js') }}></script>
+    <script src={{ asset('assets/store/js/cart.js') }}></script>
     <script src={{ asset('assets/store/js/jquery.magnific-popup.min.js') }}></script>
     <script src={{ asset('assets/store/js/aos.js') }}></script>
     <script src={{ asset('assets/store/js/jquery.animateNumber.min.js') }}></script>
@@ -73,42 +74,7 @@
     <script src={{ asset('assets/store/js/google-map.js') }}></script>
     <script src={{ asset('assets/store/js/main.js') }}></script>
     <script>
-        createItem = (code, price, qty) => {
-            return {
-                code:code,
-                price:price,
-                qty:qty
-            }
-        }
-        // Funzione per aggiungere un elemento al carrello
-        addToCart = (item) => {
-            // Recupera il carrello dal local storage
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            // Aggiunge l'elemento al carrello
-            cart.push(item);
-
-            // Salva il carrello aggiornato nel local storage
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            // Aggiorna la visualizzazione del carrello
-            //updateCartView();
-        }
-
-        // Funzione per rimuovere un elemento dal carrello
-        removeFromCart = (index) => {
-            // Recupera il carrello dal local storage
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            // Rimuove l'elemento dal carrello
-            cart.splice(index, 1);
-
-            // Salva il carrello aggiornato nel local storage
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            // Aggiorna la visualizzazione del carrello
-            //updateCartView();
-        }
+        const cartContent = localStorage.getItem('cart');
     </script>
 </body>
 

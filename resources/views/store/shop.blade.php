@@ -51,9 +51,8 @@
                             @if (count($products) > 0)
                                 <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab"
                                     role="tablist" aria-orientation="vertical">
-                                    {{ $first = $categories[0] }}
                                     @foreach ($categories as $category)
-                                        <a class="nav-link {{ $category->id == $first->id ? 'active' : '' }}"
+                                        <a class="nav-link {{ $category->id == $categories[0]->id ? 'active' : '' }}"
                                             id={{ 'pill-' . $category->slug . '-tab' }} data-toggle="pill"
                                             href={{ '#' . $category->slug }} role="tab">{{ $category->name }}</a>
                                     @endforeach
@@ -72,16 +71,16 @@
                                                                 style="background-image: url( {{ asset('assets/store/images/products/' . $product->cover) }} );"></a>
                                                             <div class="text text-center pt-4">
                                                                 <h3><a
-                                                                        href="product-single.html">{{ $product->name }}</a>
+                                                                        href="{{ route('store.shop.single', $product) }}">{{ $product->name }}</a>
                                                                 </h3>
                                                                 <p>{{ $product->description }}</p>
                                                                 <p class="price"><span>€ {{ $product->price }}</span>
                                                                 </p>
+                                                                
                                                                 <button
-                                                                    onClick="addToCart((createItem({{ $product->id }},{{ $product->price }},{{ $product->id }})))"
+                                                                    onClick="addToCart((createItem( {{ $product->id }} , '{{$product->name}}', {{ $product->price }} , 1 )))"
                                                                     href="cart.html"
-                                                                    class="btn btn-primary btn-outline-primary">Add
-                                                                    to Cart</button>
+                                                                    class="btn btn-primary btn-outline-primary">Aggiungi al carrello</button>
                                                             </div>
                                                         </div>
                                                     </div>

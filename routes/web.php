@@ -22,6 +22,8 @@ Route::get('/', [HomeController::class, 'index'])->name('store.home');
 
 Route::get('/shop', [HomeController::class,'indexShop'])->name('store.shop');
 Route::get('/shop/cart', [HomeController::class,'cart'])->name('store.cart');
+Route::get('/shop/{product}',[HomeController::class,'singleProduct'])->name('store.shop.single');
+
 
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard.home');
 // Users
@@ -56,6 +58,7 @@ Route::get('/dashboard/products/{product}', [DashboardController::class,'editPro
 Route::post('/dashboard/products/store', [DashboardController::class,'storeProduct'])->name('dashboard.products.store');
 Route::post('/dashboard/products/{product}/update', [DashboardController::class,'updateProduct'])->name('dashboard.products.update');
 Route::delete('/dashboard/products/{product}/delete', [DashboardController::class,'destroyProduct'])->name('dashboard.products.destroy');
+
 
 
 // Photos
