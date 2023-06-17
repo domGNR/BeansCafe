@@ -24,37 +24,34 @@ addToCart = (item) => {
 
     // Aggiorna il numero degli articoli nel carrello
     updateCartCount(cartCount())
+    window.dispatchEvent( new Event('storage') );
 }
 
 // Funzione per rimuovere un elemento dal carrello
-removeFromCart = (item, qty) => {
-
-    const removeItem = (item) => {
+removeFromCart = (item) => {
+    const removeItem = (cart,item) => {
         // Rimuove l'elemento dal carrello
         const index = cart.findIndex(item => item.code === item.code);
-
         if (index !== -1) {
             // Rimuovi l'oggetto dall'array
             cart.splice(index, 1);
         }
+        return cart
     }
 
 
     // Recupera il carrello dal local storage
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 
-    if (qty) {
+    if (item.qty) {
         const selectedItem = cart.find(el => el?.code === item.code)
         if (selectedItem) {
             selectedItem.qty = selectedItem.qty - item.qty
-            if (selectedItem.qty === 0) {
-                removeItem(item)
-                return
-            }
+            if (selectedItem.qty === 0) cart = removeItem(cart,item)
         }
     }
-    else removeItem(item)
+    else cart = removeItem(cart,item)
 
 
     // Salva il carrello aggiornato nel local storage
@@ -62,6 +59,7 @@ removeFromCart = (item, qty) => {
 
     // Aggiorna il numero degli articoli nel carrello
     updateCartCount(cartCount())
+    window.dispatchEvent( new Event('storage') );
 }
 
 cartCount = () => {
@@ -75,6 +73,7 @@ updateCartCount = (count) => {
     const cart = document.querySelector("#cartCount")
     cart.innerText = count
 }
+
 updateCartCount(cartCount())
 
 updateCartRender = () => {
@@ -91,7 +90,7 @@ updateCartRender = () => {
         const delivery = subtotal > 49.99 ? 'Spedizione gratuita' : 9.99
         const total = subtotal > 49.99 ? subtotal : subtotal + delivery
         subtotalEl.innerText = '€ ' + subtotal.toFixed(2)
-        deliveryEl.innerText = '€ ' + delivery.toFixed(2)
+        deliveryEl.innerText = subtotal > 49.99 ? 'Spedizione gratuita' : '€ ' + delivery.toFixed(2)
         totalEl.innerText = '€ ' + total.toFixed(2)
         cartSection.classList.remove("d-none")
         emptyCartSection.classList.add("d-none")
@@ -99,7 +98,7 @@ updateCartRender = () => {
         let htmlString = ''
         const cartRows = cart.map(row => {
             htmlString += (`<tr class="text-center" id="product-${row.code}">
-        <td class="product-remove"><button onClick="removeFromCart((createItem( ${row.id} , ${row.name} , ${row.price} )))"><span class="icon-close"></span></button>
+        <td class="product-remove"><button onClick="removeFromCart(createItem( ${row.code} , '${row.name}' , ${row.price} ))"><span class="icon-close"></span></button>
         </td>
         <td class="product-name">
             <h3>${row.name}</h3>
@@ -108,15 +107,15 @@ updateCartRender = () => {
         <td class="quantity">
         <div class="input-group mb-3">
         <button class="mx-3"
-        style="background: transparent;border:0px !important;cursor:pointer" onClick="removeFromCart(addToCart((createItem( ${row.id} , ${row.name} , ${row.price} ))),1)">-</button>
+        style="background: transparent;border:0px !important;cursor:pointer" onClick="removeFromCart(createItem( ${row.code} , '${row.name}' , ${row.price}, 1 ))">-</button>
                 <input type="text" name="quantity"
                     class="quantity form-control input-number" value="${row.qty}" min="1"
                     max="100" disabled>
                 <button class="mx-3"
-                style="background: transparent;border:0px !important;cursor:pointer" onClick="addToCart((createItem( ${row.id} , ${row.name} , ${row.price} )),1)">+</button>
+                style="background: transparent;border:0px !important;cursor:pointer" onClick="addToCart(createItem( ${row.code} , '${row.name}' , ${row.price}, 1 ))">+</button>
             </div>
             </td>
-            <td class="total">€ ${row.price * row.qty}</td>`);
+            <td class="total">€ ${(row.price * row.qty).toFixed(2)}</td>`);
         })
         cartTableEl.innerHTML = htmlString
     }
@@ -136,3 +135,17 @@ if (cartSection && emptyCartSection) {
     });
 
 }
+
+const showAlert = () => {
+    const alertElement = `
+      <div class="alert alert-success alert-dismissible fade show" role="alert" id="alertSuccess">
+        Prodotto aggiunto al carrello
+      </div>
+    `;
+
+    $("#contentSection").prepend(alertElement);
+    setTimeout(function() {
+        const el = document.querySelector("#alertSuccess")
+        el.remove()
+      }, 1000);
+  };

@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
             'description' => 'product 1',
             'stock_qty' => 50,
             'price' => 2.99,
-            'cover' => 'NULL',
+            'cover' => null,
             'is_show' => true,
             'brand_id' => 1,
             'category_id' => 1
@@ -31,7 +31,7 @@ class ProductSeeder extends Seeder
             'description' => 'product 2',
             'stock_qty' => 50,
             'price' => 12.99,
-            'cover' => 'NULL',
+            'cover' => null,
             'is_show' => true,
             'brand_id' => 2,
             'category_id' => 2
@@ -43,7 +43,7 @@ class ProductSeeder extends Seeder
             'description' => 'product 3',
             'stock_qty' => 50,
             'price' => 17.99,
-            'cover' => 'NULL',
+            'cover' => null,
             'is_show' => true,
             'brand_id' => 3,
             'category_id' => 3
@@ -55,7 +55,7 @@ class ProductSeeder extends Seeder
             'description' => 'product 4',
             'stock_qty' => 50,
             'price' => 22.99,
-            'cover' => 'NULL',
+            'cover' => null,
             'is_show' => true,
             'brand_id' => 3,
             'category_id' => 1
@@ -67,7 +67,7 @@ class ProductSeeder extends Seeder
             'description' => 'product 5',
             'stock_qty' => 50,
             'price' => 36.99,
-            'cover' => 'NULL',
+            'cover' => null,
             'is_show' => true,
             'brand_id' => 2,
             'category_id' => 1
