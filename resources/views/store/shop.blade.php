@@ -23,6 +23,7 @@
         <div class="container">
             <div class="row d-md-flex">
                 <div class="col-lg-12 ftco-animate p-md-5" id="contentSection">
+                    <div class="alert alert-success alert-dismissible fade" role="alert" id="alertBox"></div>
                     <div class="row">
                         <div class="col-md-12 nav-link-wrap mb-5">
                             @if (count($products) > 0)
@@ -44,18 +45,15 @@
                                                 @if ($product->category->id == $category->id)
                                                     <div class="col-md-3"style="min-width:250px !important;">
                                                         <div class="menu-entry">
-                                                            <a href="#" class="img"
-                                                                style="background-image: url({{($product->cover ? asset('assets/store/images/products/' . $product->cover) : asset('assets/store/images/placeholder.jpg'))}}"></a>
+                                                            <a class="img" href="{{ route('store.shop.single', $product) }}"
+                                                                style="background-image: url({{($product->cover ? asset('assets/store/images/products/' . $product->cover) : asset('assets/store/images/placeholder.jpg'))}})"></a>
                                                             <div class="text text-center pt-4">
                                                                 <h3><a href="{{ route('store.shop.single', $product) }}">{{ $product->name }}</a></h3>
                                                                 <p>{{ $product->description }}</p>
-                                                                {{-- <p>asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd
-                                                                </p> --}}
                                                                 <p class="price"><span>€ {{ $product->price }}</span>
                                                                 </p>
                                                                 <button
-                                                                    onClick="addToCart((createItem( {{ $product->id }} , '{{$product->name}}', {{ $product->price }} , 1 )));showAlert();"
-                                                                    href="cart.html"
+                                                                    onClick="addToCart((createItem( {{ $product->id }} , '{{$product->name}}', {{ $product->price }} , 1 )))"
                                                                     class="btn btn-primary btn-outline-primary">Aggiungi al carrello</button>
                                                             </div>
                                                         </div>

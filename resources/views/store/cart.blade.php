@@ -1,4 +1,10 @@
 <x-layouts.app>
+    <style>
+        .ftco-cart button{
+            border:0 !important;
+            cursor:pointer;
+        }
+    </style>
     <section class="home-slider owl-carousel">
         <div class="slider-item" style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
             <div class="overlay"></div>
@@ -16,7 +22,8 @@
         </div>
     </section>
     <section class="ftco-section ftco-cart" id="cartSection">
-        <div class="container">
+        <div class="container" id="#contentSection">
+            <div class="alert alert-success alert-dismissible fade" role="alert" id="alertBox"></div>
             <div class="row">
                 <div class="col-md-12 ftco-animate">
                     <div class="cart-list" style="overflow-x: auto !important;">

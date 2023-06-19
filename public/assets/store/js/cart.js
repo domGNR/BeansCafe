@@ -10,6 +10,7 @@ createItem = (code, name, price, qty) => {
         qty: qty
     }
 }
+
 // Funzione per aggiungere un elemento al carrello
 addToCart = (item) => {
     // Recupera il carrello dal local storage
@@ -25,6 +26,7 @@ addToCart = (item) => {
     // Aggiorna il numero degli articoli nel carrello
     updateCartCount(cartCount())
     window.dispatchEvent( new Event('storage') );
+    showAlert('Prodotto aggiunto al carrello');
 }
 
 // Funzione per rimuovere un elemento dal carrello
@@ -60,6 +62,7 @@ removeFromCart = (item) => {
     // Aggiorna il numero degli articoli nel carrello
     updateCartCount(cartCount())
     window.dispatchEvent( new Event('storage') );
+    showAlert('Prodotto rimosso al carrello');
 }
 
 cartCount = () => {
@@ -98,7 +101,7 @@ updateCartRender = () => {
         let htmlString = ''
         const cartRows = cart.map(row => {
             htmlString += (`<tr class="text-center" id="product-${row.code}">
-        <td class="product-remove"><button onClick="removeFromCart(createItem( ${row.code} , '${row.name}' , ${row.price} ))"><span class="icon-close"></span></button>
+        <td class="product-remove"><button class="bg-transparent" onClick="removeFromCart(createItem( ${row.code} , '${row.name}' , ${row.price} ))"><span class="icon-close"></span></button>
         </td>
         <td class="product-name">
             <h3>${row.name}</h3>
@@ -121,10 +124,8 @@ updateCartRender = () => {
     }
 }
 
-
 const cartSection = document.querySelector("#cartSection")
 const emptyCartSection = document.querySelector("#emptyCartSection")
-
 
 if (cartSection && emptyCartSection) {
     updateCartRender()
@@ -136,16 +137,11 @@ if (cartSection && emptyCartSection) {
 
 }
 
-const showAlert = () => {
-    const alertElement = `
-      <div class="alert alert-success alert-dismissible fade show" role="alert" id="alertSuccess">
-        Prodotto aggiunto al carrello
-      </div>
-    `;
-
-    $("#contentSection").prepend(alertElement);
+const showAlert = (message) => {
+    const el = document.querySelector("#alertBox")
+    el.innerText = message
+    el.classList.toggle("show")
     setTimeout(function() {
-        const el = document.querySelector("#alertSuccess")
-        el.remove()
+        el.classList.toggle("show")
       }, 1000);
   };
