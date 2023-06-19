@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-group">
                             <label for="cover_image" style="text-transform:capitalize">cover_image</label>
-                            <input type="file" id="input-file-now-custom-3" class="form-control m-2" name="cover_image" multiple>
+                            <input type="file" id="input-file-now-custom-3" class="form-control m-2" name="cover_image">
                             @error('cover_image')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -100,9 +100,17 @@
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">
                                 <thead>
-                                    @foreach (Schema::getColumnListing('products') as $key)
-                                        <th>{{ $key }}</th>
-                                    @endforeach
+                                        <th>Id</th>
+                                        <th>Nome</th>
+                                        <th>Descrizione</th>
+                                        <th>Quantità</th>
+                                        <th>Prezzo</th>
+                                        <th>Foto Cover</th>
+                                        <th>Attivo ?</th>
+                                        <th>Id brand</th>
+                                        <th>Id categoria</th>
+                                        <th>Creato</th>
+                                        <th>Aggiornato</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($products as $product)

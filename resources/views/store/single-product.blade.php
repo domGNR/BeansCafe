@@ -22,10 +22,25 @@
             <div class="alert alert-success alert-dismissible fade" role="alert" id="alertBox"></div>
               <div class="row">
                   <div class="col-lg-6 mb-5 ftco-animate">
-                      <a href="{{($product->cover ? asset('assets/store/images/products/' . $product->cover) : asset('assets/store/images/placeholder.jpg'))}}"
-                        class="image-popup">
-                        <img src="{{($product->cover ? asset('assets/store/images/products/' . $product->cover) : asset('assets/store/images/placeholder.jpg'))}}"
-                        class="img-fluid" alt=""></a>
+
+                          <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                  <img src="{{($product->cover ? asset('assets/store/images/products/' . $product->cover) : asset('assets/store/images/placeholder.jpg'))}}"
+                                   class="d-block w-100" alt="...">
+                              </div>
+                              @if (count($product->photos) > 0)
+                                @foreach ($product->photos as $photo)
+                                    {{-- <div class="carousel-item">
+                                        <img src="{{asset('assets/store/images/products/' . $photo)}}" class="d-block w-100" alt="...">
+                                    </div> --}}
+                                @endforeach
+                              @endif
+
+                            </div>
+                          </div>
+
+
                   </div>
                   <div class="col-lg-6 product-details pl-md-5 ftco-animate">
                       <h3>{{$product->name}}</h3>
@@ -60,69 +75,11 @@
                        </span>
                     </div>
                 </div>
-                <p><a class="btn btn-primary py-3 px-5" id="addToCartButton">Aggiungi al carrello</a></p>
+                <p><a class="btn btn-primary text-white py-3 px-5" id="addToCartButton">Aggiungi al carrello</a></p>
                   </div>
               </div>
           </div>
       </section>
-
-      {{-- <section class="ftco-section">
-          <div class="container">
-              <div class="row justify-content-center mb-5 pb-3">
-            <div class="col-md-7 heading-section ftco-animate text-center">
-                <span class="subheading">Discover</span>
-              <h2 class="mb-4">Related products</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-            </div>
-          </div>
-          <div class="row">
-              <div class="col-md-3">
-                  <div class="menu-entry">
-                          <a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
-                          <div class="text text-center pt-4">
-                              <h3><a href="#">Coffee Capuccino</a></h3>
-                              <p>A small river named Duden flows by their place and supplies</p>
-                              <p class="price"><span>$5.90</span></p>
-                              <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                          </div>
-                      </div>
-              </div>
-              <div class="col-md-3">
-                  <div class="menu-entry">
-                          <a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
-                          <div class="text text-center pt-4">
-                              <h3><a href="#">Coffee Capuccino</a></h3>
-                              <p>A small river named Duden flows by their place and supplies</p>
-                              <p class="price"><span>$5.90</span></p>
-                              <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                          </div>
-                      </div>
-              </div>
-              <div class="col-md-3">
-                  <div class="menu-entry">
-                          <a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
-                          <div class="text text-center pt-4">
-                              <h3><a href="#">Coffee Capuccino</a></h3>
-                              <p>A small river named Duden flows by their place and supplies</p>
-                              <p class="price"><span>$5.90</span></p>
-                              <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                          </div>
-                      </div>
-              </div>
-              <div class="col-md-3">
-                  <div class="menu-entry">
-                          <a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
-                          <div class="text text-center pt-4">
-                              <h3><a href="#">Coffee Capuccino</a></h3>
-                              <p>A small river named Duden flows by their place and supplies</p>
-                              <p class="price"><span>$5.90</span></p>
-                              <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                          </div>
-                      </div>
-              </div>
-          </div>
-          </div>
-      </section> --}}
       <script>
         const product = {!! json_encode($product) !!};
         addInput = () => {

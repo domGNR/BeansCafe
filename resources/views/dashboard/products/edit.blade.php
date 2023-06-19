@@ -38,28 +38,6 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="category_id" style="text-transform:capitalize">categoria</label>
-                            <select name="category_id" class="form-control">
-                                @foreach ($categories as $category)
-                                <option value="{{$category->id}}"{{ $category->id==$product->category->id ? 'selected' : '' }}> {{$category->name}} </option>
-                                @endforeach
-                            </select>
-                            @error('category_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
-                        {{-- <div class="form-group">
-                            <label for="brand_id" style="text-transform:capitalize">brand</label>
-                            <select name="brand_id" class="form-control">
-                                @foreach ($brands as $brand)
-                                <option value="{{$brand->id}}"{{ $brand->id==$product->brand->id ? 'selected' : '' }}> {{$brand->name}} </option>
-                                @endforeach
-                            </select>
-                            @error('brand_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
                         <div class="form-group">
                             <label for="price" style="text-transform:capitalize">prezzo</label>
                             <input type="number" class="form-control" name="price" min="0.00" max="10000.00"

@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         // return DB::table('products')->get();
-         return Product::with('category')->get();
+        return Product::with('category')->get();
     }
 
     /**
@@ -35,15 +35,15 @@ class ProductController extends Controller
         $id = '';
         if ($request->hasFile("cover_image")) {
             $file = $request->file("cover_image");
-            $imageName = time() . '_' . $file->getClientOriginalName();
-            $file->move(\public_path("assets/store/images/products/"), $imageName);
+            $file->move(\public_path("assets/store/images/products/"), $this->getUniqueImageName($file));
 
 
             $product = new Product([
                 "name" => $request->name,
                 "description" => $request->description,
+                "slug" => $request->slug,
                 "stock_qty" => $request->stock_qty,
-                "cover" => $imageName,
+                "cover" => $file,
                 "price" => $request->price,
                 "is_show" => $request->active == 'on' ? true : false,
                 "brand_id" => $request->brand_id,
@@ -54,15 +54,28 @@ class ProductController extends Controller
             if ($request->hasFile("images")) {
                 $files = $request->file("images");
                 foreach ($files as $file) {
-                    $imageName = time() . '_' . $file->getClientOriginalName();
-                    $file->move(\public_path("assets/store/images/products/"), $imageName);
-                    $photo=new Photo([
-                        "product_id"=>$id,
-                        "url"=>$imageName
+                    $file->move(\public_path("assets/store/images/products/"), $this->getUniqueImageName($file));
+                    $photo = new Photo([
+                        "product_id" => $id,
+                        "url" => $file
                     ]);
                     $photo->save();
                 }
             }
+        }
+    }
+
+    public function getUniqueImageName($file)
+    {
+        switch ($file->getMimeType()) {
+            case 'image/jpeg':
+                return bin2hex(random_bytes(8)).'.jpg';
+            case 'image/png':
+                return bin2hex(random_bytes(8)).'.png';
+            case 'image/gif':
+                return bin2hex(random_bytes(8)).'.gif';
+            default:
+                break;
         }
     }
 
@@ -71,7 +84,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('store.show', compact('product'));
     }
 
     /**
