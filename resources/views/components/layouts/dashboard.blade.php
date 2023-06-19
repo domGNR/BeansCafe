@@ -65,14 +65,14 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $.notify({
-            icon: 'pe-7s-gift',
-            message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+        // $.notify({
+        //     icon: 'pe-7s-gift',
+        //     message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
 
-        }, {
-            type: 'info',
-            timer: 4000
-        });
+        // }, {
+        //     type: 'info',
+        //     timer: 4000
+        // });
         $(".clickable-row").click(function() {
             window.location = $(this).data("href");
         });

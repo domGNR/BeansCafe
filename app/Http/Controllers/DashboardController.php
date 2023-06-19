@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
+use App\Models\Role;
 
 class DashboardController extends Controller
 {
@@ -50,7 +51,8 @@ class DashboardController extends Controller
     public function editUser(User $user)
     {
          $user = $this->userController->edit($user);
-         return view('dashboard.users.edit', compact('user'));
+         $roles = Role::all();
+         return view('dashboard.users.edit', compact('user','roles'));
     }
 
     /**
@@ -136,7 +138,6 @@ class DashboardController extends Controller
     public function indexProducts()
     {
         $products = $this->productController->index();
-        //dd($products);
         $categories = $this->categoryController->index();
         $brands = $this->brandController->index();
         return view('dashboard.products.index', compact('products','categories','brands'));

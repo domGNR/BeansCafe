@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->float('total',2);
-            $table->string('notes');
-            $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            $table->unsignedBigInteger('address_id');
-            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->unsignedBigInteger('status_id');
             $table->foreign('status_id')->references('id')->on('order_statuses')->onDelete('cascade');
+            $table->string('name');
+            $table->string('surname');
+            $table->string('state');
+            $table->string('address');
+            $table->string('city');
+            $table->string('zip');
             $table->timestamps();
         });
     }
@@ -31,8 +32,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('orders', function(Blueprint $table){
-            $table->dropForeign(['client_id']);
-            $table->dropForeign(['address_id']);
             $table->dropForeign(['status_id']);
         });
         Schema::dropIfExists('orders');

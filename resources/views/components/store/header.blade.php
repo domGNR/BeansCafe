@@ -4,8 +4,8 @@
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
+            aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
@@ -30,7 +30,7 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->full_name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -44,8 +44,8 @@
                             </form>
                             @if (Auth::user()->role_id == 1)
                                 <a class="dropdown-item" href="{{ route('dashboard.home') }}">
-                                {{ __('Admin Dashboard') }}
-                                </a>            
+                                    {{ __('Admin Dashboard') }}
+                                </a>
                             @endif
                         </div>
                     </li>
@@ -54,7 +54,8 @@
 
                 <li class="nav-item cart"><a href="{{ route('store.cart') }}" class="nav-link"><span
                             class="icon icon-shopping_cart"></span><span
-                            class="bag d-flex justify-content-center align-items-center"><small id="cartCount"></small></span></a>
+                            class="bag d-flex justify-content-center align-items-center"><small
+                                id="cartCount"></small></span></a>
                 </li>
             </ul>
         </div>

@@ -48,7 +48,7 @@
             <div class="row justify-content-end">
                 <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
                     <div class="cart-total mb-3">
-                        <h3>Cart Totals</h3>
+                        <h3>Totale carrello</h3>
                         <p class="d-flex">
                             <span>Subtotale</span>
                             <span id="subtotal"></span>
@@ -59,11 +59,11 @@
                         </p>
                         <hr>
                         <p class="d-flex total-price">
-                            <span>Total</span>
+                            <span>Totale</span>
                             <span id="total"></span>
                         </p>
                     </div>
-                    <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+                    <p class="text-center"><a href="{{route('store.cart.checkout')}}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
                 </div>
             </div>
         </div>

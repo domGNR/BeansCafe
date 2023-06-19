@@ -35,7 +35,8 @@ class ProductController extends Controller
         $id = '';
         if ($request->hasFile("cover_image")) {
             $file = $request->file("cover_image");
-            $file->move(\public_path("assets/store/images/products/"), $this->getUniqueImageName($file));
+            $fileName = $this->getUniqueImageName($file);
+            $file->move(\public_path("assets/store/images/products/"), $fileName);
 
 
             $product = new Product([
@@ -43,7 +44,7 @@ class ProductController extends Controller
                 "description" => $request->description,
                 "slug" => $request->slug,
                 "stock_qty" => $request->stock_qty,
-                "cover" => $file,
+                "cover" => $fileName,
                 "price" => $request->price,
                 "is_show" => $request->active == 'on' ? true : false,
                 "brand_id" => $request->brand_id,
@@ -54,10 +55,11 @@ class ProductController extends Controller
             if ($request->hasFile("images")) {
                 $files = $request->file("images");
                 foreach ($files as $file) {
-                    $file->move(\public_path("assets/store/images/products/"), $this->getUniqueImageName($file));
+                    $fileName = $this->getUniqueImageName($file);
+                    $file->move(\public_path("assets/store/images/products/"), $fileName);
                     $photo = new Photo([
                         "product_id" => $id,
-                        "url" => $file
+                        "url" => $fileName
                     ]);
                     $photo->save();
                 }
@@ -69,11 +71,11 @@ class ProductController extends Controller
     {
         switch ($file->getMimeType()) {
             case 'image/jpeg':
-                return bin2hex(random_bytes(8)).'.jpg';
+                return bin2hex(random_bytes(8)) . '.jpg';
             case 'image/png':
-                return bin2hex(random_bytes(8)).'.png';
+                return bin2hex(random_bytes(8)) . '.png';
             case 'image/gif':
-                return bin2hex(random_bytes(8)).'.gif';
+                return bin2hex(random_bytes(8)) . '.gif';
             default:
                 break;
         }

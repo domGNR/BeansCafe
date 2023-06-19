@@ -12,19 +12,20 @@
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                        @foreach ($users[0] as $key => $value)
-                                        <th>{{$key}}</th>
-                                        @endforeach
-                                        <th>Edit</th>
+                                        <th>Id</th>
+                                        <th>Nome e cognome</th>
+                                        <th>email</th>
+                                        <th>Ruolo</th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            @foreach ($users as $user)
-                                                @foreach ($user as $value)
-                                                    <td>{{$value}}</td>
-                                                @endforeach
-                                                {{-- {{dd($user)}} --}}
-                                                <td><button><a href="{{route('dashboard.users.edit',$user['id'])}}">Edit</a></button></td>
+                                        @foreach ($users as $user)
+                                        <tr class="clickable-row"
+                                        data-href="{{route('dashboard.users.edit',$user['id'])}}">
+                                            {{-- {{dd($user)}} --}}
+                                                <td>{{$user['id']}}</td>
+                                                <td>{{$user['full_name']}}</td>
+                                                <td>{{$user['email']}}</td>
+                                                <td>{{$user['role_id']}}</td>
                                             @endforeach
                                         </tr>
                                     </tbody>

@@ -43,11 +43,18 @@ class HomeController extends Controller
     {
         return view('store.cart');
     }
-    
+
+    public function checkout()
+    {
+        return view('store.checkout');
+    }
+
     function singleProduct(Product $product)
     {
         return view('store.single-product', compact('product'));
     }
+
+
 
 
 }

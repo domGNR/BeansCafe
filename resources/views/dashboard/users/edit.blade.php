@@ -24,16 +24,20 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="name" style="text-transform:capitalize">name</label>
-                            <input type="text" class="form-control" name="name" value="{{ $user['name'] }}">
-                            @error('name')
+                            <label for="full_name" style="text-transform:capitalize">Nome e cognome</label>
+                            <input type="text" class="form-control" name="full_name" value="{{ $user['full_name'] }}">
+                            @error('full_name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="role" style="text-transform:capitalize">role</label>
-                            <select class="form-control" name="role" value="{{ $user['role'] }}"></select>
-                            @error('role')
+                            <label for="role_id" style="text-transform:capitalize">Ruolo</label>
+                            <select class="form-control" name="role_id" value="{{ $user['role_id'] }}">
+                                @foreach ($roles as $role)
+                                    <option value={{$role->id}}>{{$role->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('role_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
