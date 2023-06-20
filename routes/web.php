@@ -22,10 +22,14 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('store.home');
 
 Route::get('/shop', [HomeController::class,'indexShop'])->name('store.shop');
+
 Route::get('/shop/cart', [HomeController::class,'cart'])->name('store.cart');
 Route::get('/shop/{product}',[HomeController::class,'singleProduct'])->name('store.shop.single');
 Route::get('/shop/cart/checkout',[HomeController::class,'checkout'])->name('store.cart.checkout');
-Route::post('/order/store',[OrderController::class,'store'])->name('order.store');
+
+Route::get('/orders',[OrderController::class,'index'])->name('order.index');
+Route::get('/orders/{order}',[OrderController::class,'edit'])->name('order.edit');
+Route::post('/orders/store',[OrderController::class,'store'])->name('order.store');
 
 
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard.home');

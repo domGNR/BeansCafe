@@ -102,7 +102,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+
+        $product->name = $request['name'];
+        $product->slug = $request['slug'];
+        $product->description = $request['description'];
+        $product->price = $request['price'];
+        $product->stock_qty = $request['stock_qty'];
+        $product->save();
     }
 
     /**

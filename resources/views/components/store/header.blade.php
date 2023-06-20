@@ -47,6 +47,11 @@
                                     {{ __('Admin Dashboard') }}
                                 </a>
                             @endif
+                            @if (Auth::user()->role_id == 1)
+                            <a class="dropdown-item" href="{{ route('order.index') }}">
+                                {{ __('I miei ordini') }}
+                            </a>
+                        @endif
                         </div>
                     </li>
                 @endguest

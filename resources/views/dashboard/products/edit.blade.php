@@ -6,12 +6,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <form enctype="multipart/form-data" method="POST"
-                        action="{{ route('dashboard.categories.update', $product->id) }}">
+                        action="{{ route('dashboard.products.update', $product->id) }}">
                         @csrf
                         <div class="form-group">
                             <label for="id" style="text-transform:capitalize">id</label>
                             <input type="text" class="form-control" name="id"
-                                value="{{ $product->id }} disabled0">
+                                value="{{ $product->id }}"disabled>
                             @error('id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description" style="text-transform:capitalize">description</label>
-                            <input type="text" class="form-control" name="name"
+                            <input type="text" class="form-control" name="description"
                                 value="{{ $product->description }}">
                             @error('description')
                                 <div class="alert alert-danger">{{ $message }}</div>

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Product;
 use App\Models\OrderStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -14,7 +16,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'total','name','surname','state','address','city','zip'
+        'total','name','surname','address','city','zip','status_id','tracking','user_id'
     ];
 
 
@@ -31,6 +33,11 @@ class Order extends Model
      */
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class,'orders_products')->withPivot('qty');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -51,7 +51,7 @@ class HomeController extends Controller
 
     function singleProduct(Product $product)
     {
-        return view('store.single-product', compact('product'));
+        return view('store.singleProduct', compact('product'));
     }
 
 

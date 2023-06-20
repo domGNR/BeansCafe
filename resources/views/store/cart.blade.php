@@ -1,8 +1,8 @@
 <x-layouts.app>
     <style>
-        .ftco-cart button{
-            border:0 !important;
-            cursor:pointer;
+        .ftco-cart button {
+            border: 0 !important;
+            cursor: pointer;
         }
     </style>
     <section class="home-slider owl-carousel">
@@ -14,7 +14,8 @@
                     <div class="col-md-7 col-sm-12 text-center ftco-animate">
                         <h1 class="mb-3 mt-5 bread">Cart</h1>
                         <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span>
-                            <span>Cart</span></p>
+                            <span>Cart</span>
+                        </p>
                     </div>
 
                 </div>
@@ -23,6 +24,10 @@
     </section>
     <section class="ftco-section ftco-cart" id="cartSection">
         <div class="container" id="#contentSection">
+
+            @if ($errors->has('no_qty'))
+                <div class="error"><h3>{{ $errors->first('no_qty') }}</h3></div>
+            @endif
             <div class="alert alert-success alert-dismissible fade" role="alert" id="alertBox"></div>
             <div class="row">
                 <div class="col-md-12 ftco-animate">
@@ -63,19 +68,36 @@
                             <span id="total"></span>
                         </p>
                     </div>
-                    <p class="text-center"><a href="{{route('store.cart.checkout')}}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+                    <p class="text-center"><a href="{{ route('store.cart.checkout') }}"
+                            class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="ftco-section ftco-cart d-none" id="emptyCartSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ftco-animate">
+                    <h3>Non ci sono prodotti nel carrello</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="ftco-section ftco-cart d-none" id="emptyCartSection">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 ftco-animate">
-            <h3>Non ci sono prodotti nel carrello</h3>
-          </div>
-        </div>
-      </div>
-    </section>
+    <script>
+        const cart = {!! json_encode(session('cart')) !!}
+        if(cart){
+            const finalCart = cart.map(el=>{
+                return {
+                    code:el.id,
+                    name:el.name,
+                    price:el.price,
+                    qty:el.stock_qty
+                }
+            })
+            localStorage.setItem('cart', JSON.stringify(finalCart));
+        }
+
+
+    </script>
 </x-layouts.app>

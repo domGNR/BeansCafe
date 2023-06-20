@@ -16,9 +16,11 @@ return new class extends Migration
             $table->float('total',2);
             $table->unsignedBigInteger('status_id');
             $table->foreign('status_id')->references('id')->on('order_statuses')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('tracking')->nullable();
             $table->string('name');
             $table->string('surname');
-            $table->string('state');
             $table->string('address');
             $table->string('city');
             $table->string('zip');
@@ -33,6 +35,7 @@ return new class extends Migration
     {
         Schema::table('orders', function(Blueprint $table){
             $table->dropForeign(['status_id']);
+            $table->dropForeign(['user_id']);
         });
         Schema::dropIfExists('orders');
     }

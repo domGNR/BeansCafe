@@ -1,0 +1,55 @@
+<x-layouts.app>
+    <style>
+        tr.clickable-row:hover {
+            cursor: pointer;
+        }
+    </style>
+    <div class="container-fluid my-5 py-5" style="width:90%">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header bg-dark">
+                        <h4 class="title">I miei Ordini</h4>
+                    </div>
+                    <div class="content table-responsive table-full-width bg-dark">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <th>Id</th>
+                                <th>Nome</th>
+                                <th>Cognome</th>
+                                <th>Indirizzo</th>
+                                <th>Città</th>
+                                <th>Cap</th>
+                                <th>Stato Ordine</th>
+                                <th>Tracking</th>
+                                <th>Totale</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($orders as $order)
+                                    <tr class="clickable-row" data-href="{{ route('order.edit', $order->id) }}">
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->name }}</td>
+                                        <td>{{ $order->surname }}</td>
+                                        <td>{{ $order->address }}</td>
+                                        <td>{{ $order->city }}</td>
+                                        <td>{{ $order->zip }}</td>
+                                        <td>{{ $order->status_id }}</td>
+                                        <td>{{ $order->trackig }}</td>
+                                        <td>{{ $order->total }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-layouts.app>
+<script>
+    $(document).ready(function() {
+        $(".clickable-row").click(function() {
+            window.location = $(this).data("href");
+        });
+    });
+</script>
