@@ -1,6 +1,6 @@
 <x-layouts.app>
     <style>
-        #owl-demo .item img {
+        #productSlider .item img {
             display: block;
             width: auto;
             height: auto;
@@ -15,9 +15,8 @@
                 <div class="row slider-text justify-content-center align-items-center">
 
                     <div class="col-md-7 col-sm-12 text-center ftco-animate">
-                        <h1 class="mb-3 mt-5 bread">Product Detail</h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Product
-                                Detail</span></p>
+                        <h1 class="mb-3 mt-5 bread">Dettagli prodotto</h1>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Detttagli prodotto</span></p>
                     </div>
 
                 </div>
@@ -30,7 +29,7 @@
             <div class="alert alert-success alert-dismissible fade" role="alert" id="alertBox"></div>
             <div class="row">
                 <div class="col-lg-6 mb-5 ftco-animate">
-                    <div id="owl-demo" class="owl-carousel owl-theme">
+                    <div id="productSlider" class="owl-carousel owl-theme">
                         <div class="item">
                             <img src="{{ $product->cover ? asset('assets/store/images/products/' . $product->cover) : asset('assets/store/images/placeholder.jpg') }}"
                                 alt="{{ $product->name }}">
@@ -110,7 +109,7 @@
 
     $(document).ready(function() {
 
-        $("#owl-demo").owlCarousel({
+        $("#productSlider").owlCarousel({
 
             navigation: true, // Show next and prev buttons
 

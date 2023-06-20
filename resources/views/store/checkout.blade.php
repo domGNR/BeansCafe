@@ -9,7 +9,8 @@
                     <div class="col-md-7 col-sm-12 text-center ftco-animate">
                         <h1 class="mb-3 mt-5 bread">Checkout</h1>
                         <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span>
-                            <span>Checkout</span></p>
+                            <span>Checkout</span>
+                        </p>
                     </div>
 
                 </div>
@@ -21,64 +22,69 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-12 ftco-animate">
-                    <form action="#" method="POST" class="billing-form ftco-bg-dark p-3 p-md-5">
+                    <form action="{{ route('order.store') }}" method="POST"
+                        class="billing-form ftco-bg-dark p-3 p-md-5" id="checkoutForm">
                         @csrf
                         <h3 class="mb-4 billing-heading">Dettagli pagamento</h3>
                         <div class="row align-items-end">
+                            <input type="hidden" name="cartData" id="cartData" value="">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="firstname">Nome</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <label for="name" style="text-transform:capitalize">Nome</label>
+                                    <input type="text" class="form-control" name="name">
+                                    @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="lastname">Cognome</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <label for="surname" style="text-transform:capitalize">Cognome</label>
+                                    <input type="text" class="form-control" name="surname">
+                                    @error('surname')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="country">Stato</label>
-                                    <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">France</option>
-                                            <option value="">Italy</option>
-                                            <option value="">Philippines</option>
-                                            <option value="">South Korea</option>
-                                            <option value="">Hongkong</option>
-                                            <option value="">Japan</option>
-                                        </select>
-                                    </div>
+                                    <label for="state" style="text-transform:capitalize">Stato (al momento si
+                                        effettuano solo spedizioni in territorio italiano)</label>
+                                    <input type="text" class="form-control" name="state" value="italia" disabled>
+                                    @error('state')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="streetaddress">Indirizzo</label>
-                                    <input type="text" class="form-control"
-                                        placeholder="House number and street name">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control"
-                                        placeholder="Appartment, suite, unit etc: (optional)">
+                                    <label for="address">Indirizzo</label>
+                                    <input type="text" class="form-control" placeholder="Via e numero civico"
+                                        name="address">
+                                    @error('address')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="towncity">Città</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <label for="city">Città</label>
+                                    <input type="text" class="form-control" name="city">
+                                    @error('city')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="postcodezip">Cap</label>
-                                    <input type="text" class="form-control" placeholder="">
+                                    <label for="cap">Cap</label>
+                                    <input type="text" class="form-control" name="cap">
+                                    @error('cap')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="w-100"></div>
@@ -90,7 +96,7 @@
                             </div> --}}
                             <div class="w-100"></div>
                         </div>
-                    </form><!-- END -->
+                    
 
 
 
@@ -111,29 +117,33 @@
                                     <span>Totale</span>
                                     <span id="total"></span>
                                 </p>
+                                <button onClick="updateCheckout()" class="my-2 btn btn-primary py-3 px-4">Aggiorna
+                                    carrello</button>
                             </div>
+                            
                         </div>
                         <div class="col-md-6">
                             <div class="cart-detail ftco-bg-dark p-3 p-md-4">
                                 <h3 class="billing-heading mb-4">Metodo pagamento</h3>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="radio">
                                             <label><input type="radio" name="optradio" class="mr-2">Bonifico bancario</label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <label><input type="radio" name="optradio" class="mr-2">Carta di credito</label>
+                                            <label><input type="radio" value="credit" name="payment" checked class="mr-2">Carta di
+                                                credito</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="radio">
-                                            <label><input type="radio" name="optradio" class="mr-2">
+                                            <label><input type="radio" value="paypal" name="payment" class="mr-2">
                                                 Paypal</label>
                                         </div>
                                     </div>
@@ -146,7 +156,10 @@
                                         </div>
                                     </div>
                                 </div> --}}
-                                <p><a href="#"class="btn btn-primary py-3 px-4">Prosegui e paga</a></p>
+                            </form><!-- END -->
+                                <button type="submit" id="checkout" class="btn btn-primary py-3 px-4">Prosegui
+                                    e
+                                    paga</button>
                             </div>
                         </div>
                     </div>
@@ -239,17 +252,44 @@
         </div>
     </section>
     <script>
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        if (cart.length > 0) {
+        updateCheckout = () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            localStorage.setItem('checkout', JSON.stringify(cart));
+
+
             const subtotalEl = document.querySelector("#subtotal")
             const deliveryEl = document.querySelector("#delivery")
             const totalEl = document.querySelector("#total")
-            const subtotal = cart.map(el => el.qty*el.price).reduce((t, n) => t + n)
+
+            const cartData = document.querySelector('#cartData')
+            cartData.value = cart;
+            const subtotal = cart.map(el => el.qty * el.price).reduce((t, n) => {
+                return t + n
+            }, 0)
             const delivery = subtotal > 49.99 ? 'Spedizione gratuita' : 9.99
             const total = subtotal > 49.99 ? subtotal : subtotal + delivery
-            subtotalEl.innerText = '€ ' + subtotal.toFixed(2)
-            deliveryEl.innerText = subtotal > 49.99 ? 'Spedizione gratuita' : '€ ' + delivery.toFixed(2)
-            totalEl.innerText = '€ ' + total.toFixed(2)
+            subtotalEl.innerText = subtotal ? '€ ' + subtotal.toFixed(2) : ""
+            deliveryEl.innerText = subtotal ? subtotal > 49.99 ? 'Spedizione gratuita' : '€ ' + delivery.toFixed(2) : ""
+            totalEl.innerText = subtotal ? '€ ' + total.toFixed(2) : ""
         }
+
+        updateCheckout()
+
+
+        checkIfEmpty = (event) => {
+            const cart = JSON.parse(localStorage.getItem('checkout')) || [];
+            if (cart.length === 0) {
+                event.preventDefault();
+                alert('Il tuo carrello è vuoto')
+            } else {
+                const form = document.querySelector("#checkoutForm")
+                form.submit()
+            }
+        }
+
+        const checkoutButton = document.querySelector("#checkout")
+        checkoutButton.addEventListener('click', (event) => {
+            checkIfEmpty(event)
+        })
     </script>
 </x-layouts.app>
