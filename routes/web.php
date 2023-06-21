@@ -60,3 +60,10 @@ Route::get('/dashboard/products/{product}', [DashboardController::class,'editPro
 Route::post('/dashboard/products/store', [DashboardController::class,'storeProduct'])->name('dashboard.products.store');
 Route::post('/dashboard/products/{product}/update', [DashboardController::class,'updateProduct'])->name('dashboard.products.update');
 Route::delete('/dashboard/products/{product}/delete', [DashboardController::class,'destroyProduct'])->name('dashboard.products.destroy');
+
+
+// Orders
+Route::get('/dashboard/orders', [DashboardController::class,'indexOrders'])->name('dashboard.orders.index');
+Route::get('/dashboard/products/{product}', [DashboardController::class,'editOrder'])->name('dashboard.orders.edit');
+// Route::post('/dashboard/products/store', [DashboardController::class,'storeProduct'])->name('dashboard.products.store');
+// Route::post('/dashboard/products/{product}/update', [DashboardController::class,'updateProduct'])->name('dashboard.products.update');

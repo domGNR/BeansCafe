@@ -39,10 +39,10 @@ class OrderController extends Controller
 
         foreach ($cart as $item) {
             $product = Product::where('id',$item['code'])->first();
-            if($product->{'stock_qty'} - $item['qty'] < 0){
+            if($product['stock_qty'] - $item['qty'] < 0){
                 $redirectToCart = true;
             } else {
-                $product->{'stock_qty'} = $item['qty'];
+                $product['stock_qty'] = $item['qty'];
             }
             $products->add($product);
         }
@@ -57,7 +57,9 @@ class OrderController extends Controller
             foreach($products as $product){
                 $subtotal=$product['price']*$product['stock_qty'];
                 $total=$total+$subtotal;
-                $total < 49.99 ? $total + 9.99 : $total;
+            }
+            if($total < 50){
+                $total = $total + 9.99;
             }
 
             $order = new Order([
@@ -74,6 +76,9 @@ class OrderController extends Controller
 
             foreach($products as $product){
                 $order->products()->attach($product->id, ['qty' => $product['stock_qty']]);
+                $buyedProduct = Product::where('id',$product['id'])->first();
+                $buyedProduct->stock_qty = $buyedProduct['stock_qty']-$product['stock_qty'];
+                $buyedProduct->save();
             }
             return view('store.orderComplete');
 
@@ -113,8 +118,8 @@ class OrderController extends Controller
         $order->city = $request['city'];
         $order->zip = $request['zip'];
         $order->tracking = $request['tracking'];
-        $order->tracking = $request['status_id'];
-        $order->tracking = $request['total'];
+        $order->status_id = $request['status_id'];
+        $order->total = $request['total'];
         $order->save();
     }
 

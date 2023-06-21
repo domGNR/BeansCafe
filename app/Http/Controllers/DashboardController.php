@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderStatus;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Brand;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
-use App\Models\Role;
 
 class DashboardController extends Controller
 {
@@ -168,5 +170,15 @@ class DashboardController extends Controller
         $this->productController->destroy($product);
         return redirect(route("dashboard.products.index"))->with('message', "$product->name è stato eliminato");
     }
+
+
+    public function indexOrders(Product $product)
+    {
+        $orders = Order::all();
+        $orderStatuses = OrderStatus::all();
+        return view('dashboard.orders.index',compact(['orders','orderStatuses']));
+    }
+
+
 
 }

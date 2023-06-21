@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class={{ Request::is('dashboard/orders') ? 'active' : '' }}>
-                    <a href="user.html">
+                    <a href="{{route("dashboard.orders.index")}}">
                         {{-- <i class="pe-7s-user"></i> --}}
                         <p>Orders</p>
                     </a>
