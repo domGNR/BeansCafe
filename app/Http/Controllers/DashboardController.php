@@ -31,7 +31,8 @@ class DashboardController extends Controller
         $this->brandController = $brandController;
         $this->categoryController = $categoryController;
         $this->productController = $productController;
-        // $this->middleware('auth');
+        $this->middleware('auth');
+        $this->middleware(CheckRole::class . ':1'); 
     }
 
     /**

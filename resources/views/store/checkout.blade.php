@@ -46,17 +46,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- <div class="w-100"></div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="state" style="text-transform:capitalize">Stato (al momento si
-                                        effettuano solo spedizioni in territorio italiano)</label>
-                                    <input type="text" class="form-control" name="state" value="italia" disabled>
-                                    @error('state')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div> --}}
                             <div class="w-100"></div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -88,18 +77,8 @@
                                 </div>
                             </div>
                             <div class="w-100"></div>
-                            {{-- <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" placeholder="">
-                                </div>
-                            </div> --}}
                             <div class="w-100"></div>
                         </div>
-
-
-
-
                         <div class="row mt-5 pt-3 d-flex">
                             <div class="col-md-6 d-flex">
                                 <div class="cart-detail cart-total ftco-bg-dark p-3 p-md-4">
@@ -123,13 +102,6 @@
                             <div class="col-md-6">
                                 <div class="cart-detail ftco-bg-dark p-3 p-md-4">
                                     <h3 class="billing-heading mb-4">Metodo pagamento</h3>
-                                    {{-- <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <label><input type="radio" name="optradio" class="mr-2">Bonifico bancario</label>
-                                        </div>
-                                    </div>
-                                </div> --}}
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div class="radio">
@@ -148,14 +120,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="" class="mr-2"> I have read
-                                                and accept the terms and conditions</label>
-                                        </div>
-                                    </div>
-                                </div> --}}
                     </form><!-- END -->
                     <button type="submit" id="checkout" class="btn btn-primary py-3 px-4">Prosegui
                         e
@@ -167,87 +131,6 @@
         <div class="col-xl-12 ftco-animate" id="emptyWrapper">
             <h3>Non ci sono prodotti nel carrello</h3>
         </div>
-
-
-        {{-- <div class="col-xl-4 sidebar ftco-animate">
-              <div class="sidebar-box">
-                <form action="#" class="search-form">
-                  <div class="form-group">
-                      <div class="icon">
-                        <span class="icon-search"></span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Search...">
-                  </div>
-                </form>
-              </div>
-              <div class="sidebar-box ftco-animate">
-                <div class="categories">
-                  <h3>Categories</h3>
-                  <li><a href="#">Tour <span>(12)</span></a></li>
-                  <li><a href="#">Hotel <span>(22)</span></a></li>
-                  <li><a href="#">Coffee <span>(37)</span></a></li>
-                  <li><a href="#">Drinks <span>(42)</span></a></li>
-                  <li><a href="#">Foods <span>(14)</span></a></li>
-                  <li><a href="#">Travel <span>(140)</span></a></li>
-                </div>
-              </div>
-
-              <div class="sidebar-box ftco-animate">
-                <h3>Recent Blog</h3>
-                <div class="block-21 mb-4 d-flex">
-                  <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-                  <div class="text">
-                    <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                    <div class="meta">
-                      <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                      <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                      <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="block-21 mb-4 d-flex">
-                  <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                  <div class="text">
-                    <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                    <div class="meta">
-                      <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                      <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                      <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="block-21 mb-4 d-flex">
-                  <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-                  <div class="text">
-                    <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                    <div class="meta">
-                      <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                      <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                      <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="sidebar-box ftco-animate">
-                <h3>Tag Cloud</h3>
-                <div class="tagcloud">
-                  <a href="#" class="tag-cloud-link">dish</a>
-                  <a href="#" class="tag-cloud-link">menu</a>
-                  <a href="#" class="tag-cloud-link">food</a>
-                  <a href="#" class="tag-cloud-link">sweet</a>
-                  <a href="#" class="tag-cloud-link">tasty</a>
-                  <a href="#" class="tag-cloud-link">delicious</a>
-                  <a href="#" class="tag-cloud-link">desserts</a>
-                  <a href="#" class="tag-cloud-link">drinks</a>
-                </div>
-              </div>
-
-              <div class="sidebar-box ftco-animate">
-                <h3>Paragraph</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-              </div>
-            </div> --}}
 
         </div>
         </div>
