@@ -66,23 +66,27 @@
                         </div>
                         <div class="form-group">
                             <label for="cover_image" style="text-transform:capitalize">cover_image</label>
-                            <input type="file" id="input-file-now-custom-3" class="form-control m-2" name="cover_image">
+                            <input type="file" id="input-file-now-custom-3" class="form-control m-2"
+                                name="cover_image">
                             @error('cover_image')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="images" style="text-transform:capitalize">images</label>
-                            <input type="file" id="input-file-now-custom-3" class="form-control m-2" name="images[]" multiple>
+                            <input type="file" id="input-file-now-custom-3" class="form-control m-2" name="images[]"
+                                multiple>
                             @error('images')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
-                              <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="activeSwitch" name="active" checked>
-                                <label class="custom-control-label" for="activeSwitch">Mostra prodotto nello shop</label>
-                              </div>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="activeSwitch" name="active"
+                                    checked>
+                                <label class="custom-control-label" for="activeSwitch">Mostra prodotto nello
+                                    shop</label>
+                            </div>
                         </div>
                         <button class="btn btn-primary mb-3 d-block">Aggiungi</button>
                     </form>
@@ -100,33 +104,41 @@
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">
                                 <thead>
-                                        <th>Id</th>
-                                        <th>Nome</th>
-                                        <th>Descrizione</th>
-                                        <th>Quantità</th>
-                                        <th>Prezzo</th>
-                                        <th>Foto Cover</th>
-                                        <th>Attivo ?</th>
-                                        <th>Id brand</th>
-                                        <th>Id categoria</th>
-                                        <th>Creato</th>
-                                        <th>Aggiornato</th>
+                                    <th>Id</th>
+                                    <th>Nome</th>
+                                    <th>Descrizione</th>
+                                    <th>Quantità</th>
+                                    <th>Prezzo</th>
+                                    <th>Foto Cover</th>
+                                    <th>Attivo ?</th>
+                                    <th>Brand</th>
+                                    <th>Categoria</th>
+                                    <th>Creato</th>
+                                    <th>Aggiornato</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($products as $product)
                                         <tr class="clickable-row"
                                             data-href="{{ route('dashboard.products.edit', $product->id) }}">
-                                            <td>{{$product->id}}</td>
-                                            <td>{{$product->name}}</td>
-                                            <td>{{$product->description}}</td>
-                                            <td>{{$product->stock_qty}}</td>
-                                            <td>{{$product->price}}</td>
-                                            <td>{{$product->cover}}</td>
-                                            <td>{{$product->is_show}}</td>
-                                            <td>{{$product->brand_id}}</td>
-                                            <td>{{$product->category_id}}</td>
-                                            <td>{{$product->created_at}}</td>
-                                            <td>{{$product->updated_at}}</td>
+                                            <td>{{ $product->id }}</td>
+                                            <td>{{ $product->name }}</td>
+                                            <td>{{ $product->description }}</td>
+                                            <td>{{ $product->stock_qty }}</td>
+                                            <td>{{ $product->price }}</td>
+                                            <td>{{ $product->cover }}</td>
+                                            <td>{{ $product->is_show == 1 ? 'SI' : 'NO' }}</td>
+                                            @foreach ($brands as $brand)
+                                                @if ($brand->id == $product->brand_id)
+                                                    <th>{{ $brand->name }}</th>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($categories as $category)
+                                                @if ($category->id == $product->category_id)
+                                                    <th>{{ $category->name }}</th>
+                                                @endif
+                                            @endforeach
+                                            <td>{{ $product->created_at }}</td>
+                                            <td>{{ $product->updated_at }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

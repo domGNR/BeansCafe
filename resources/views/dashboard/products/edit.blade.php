@@ -54,33 +54,64 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="cover_photo" class="d-block" style="text-transform:capitalize">cover
-                                foto</label>
-                            <div class="d-block"><img name="cover_photo"
-                                    src="{{ asset('assets/store/images/products/' . $product->cover) }}" alt=""
-                                    class="" height="300"></div>
-                        </div>
-                        <div>
-                            <label for="cover_photo" class="d-block" style="text-transform:capitalize">gallery
-                                foto</label>
-                            <div class="row">
-                                @foreach ($product->photos as $photo)
-                                <div class="col m-5">
-                                    <img name="cover_photo" class="m-5"
-                                    src="{{ asset('assets/store/images/products/' . $photo->url) }}" alt="" height="300">
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
                         <button class="btn btn-primary m-3 d-block">Aggiorna</button>
                     </form>
-                    <form action="{{ route('dashboard.categories.destroy', $product) }}" enctype="multipart/form-data"
+                    <form action="{{ route('dashboard.products.destroy', $product) }}" enctype="multipart/form-data"
                         method="POST">
                         @csrf
                         @method('delete')
                         <button class="btn btn-danger my-5 d-block">Elimina</button>
                     </form>
+                    <div class="form-group">
+                        <label for="cover_photo" class="d-block" style="text-transform:capitalize">cover
+                            foto</label>
+                        <div class="d-block">
+                            <img name="cover_photo"
+                                src="{{ asset('assets/store/images/products/' . $product->cover) }}" alt=""
+                                class="" height="300">
+
+                                <form action="{{ route('dashboard.cover.destroy', $product) }}"
+                                enctype="multipart/form-data" method="POST">
+                                @csrf
+                                <button href="{{ route('dashboard.cover.destroy', $product) }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                                        <path
+                                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="cover_photo" class="d-block" style="text-transform:capitalize">gallery
+                            foto</label>
+                        <div class="row">
+                            @foreach ($product->photos as $photo)
+                                <div class="col m-5">
+                                    <img name="cover_photo" class="m-5"
+                                        src="{{ asset('assets/store/images/products/' . $photo->url) }}"
+                                        alt="" height="300">
+                                    <form action="{{ route('dashboard.photos.destroy', $photo) }}"
+                                        enctype="multipart/form-data" method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        <button href="{{ route('dashboard.photos.destroy', $photo) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                                                <path
+                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

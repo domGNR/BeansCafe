@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OrderStatus;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Brand;
 use App\Models\Order;
+use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 
@@ -32,7 +33,7 @@ class DashboardController extends Controller
         $this->categoryController = $categoryController;
         $this->productController = $productController;
         $this->middleware('auth');
-        $this->middleware(CheckRole::class . ':1'); 
+        //$this->middleware(CheckRole::class . ':1'); 
     }
 
     /**
@@ -179,6 +180,20 @@ class DashboardController extends Controller
         $orderStatuses = OrderStatus::all();
         return view('dashboard.orders.index',compact(['orders','orderStatuses']));
     }
+
+
+    function destroyPhoto(Photo $photo) {
+
+        $this->productController->destroyPhoto($photo);
+        return redirect()->back();
+    }
+
+    function destroyCover(Product $product) {
+
+        $this->productController->destroyCover($product);
+        return redirect()->back();
+    }
+
 
 
 

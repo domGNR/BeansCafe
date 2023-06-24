@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Photo;
 use App\Models\Product;
-use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -52,7 +51,9 @@ class ProductController extends Controller
             ]);
             $product->save();
             $id = $product->id;
+            
             if ($request->hasFile("images")) {
+                //dd($request);
                 $files = $request->file("images");
                 foreach ($files as $file) {
                     $fileName = $this->getUniqueImageName($file);
@@ -118,4 +119,29 @@ class ProductController extends Controller
     {
         $product->delete();
     }
+
+
+    public function destroyPhoto(Photo $photo)
+    {
+        $photo = Photo::findOrFail($photo['id']);
+        $photoPath = public_path("assets\\store\\images\\products\\".$photo->url);
+        $deletedFile = File::delete($photoPath);
+        if ($deletedFile == null) {
+           echo "File deleted";
+        }
+        $photo->delete();
+    }
+
+    public function destroyCover(Product $product)
+    {
+        $photoPath = public_path("assets\\store\\images\\products\\".$product->cover);
+        $deletedFile = File::delete($photoPath);
+        if ($deletedFile == null) {
+           echo "File deleted";
+        }
+        $product->cover = null;
+        $product->save();
+    }
+
+
 }

@@ -62,8 +62,12 @@ Route::post('/dashboard/products/{product}/update', [DashboardController::class,
 Route::delete('/dashboard/products/{product}/delete', [DashboardController::class,'destroyProduct'])->name('dashboard.products.destroy');
 
 
+// Photos
+Route::delete('/dashboard/photos/{photo}/delete', [DashboardController::class,'destroyPhoto'])->name('dashboard.photos.destroy');
+Route::post('/dashboard/photos/{cover}/delete', [DashboardController::class,'destroyCover'])->name('dashboard.cover.destroy');
+
 // Orders
 Route::get('/dashboard/orders', [DashboardController::class,'indexOrders'])->name('dashboard.orders.index');
-Route::get('/dashboard/products/{product}', [DashboardController::class,'editOrder'])->name('dashboard.orders.edit');
+Route::get('/dashboard/orders/{product}', [DashboardController::class,'editOrder'])->name('dashboard.orders.edit');
 // Route::post('/dashboard/products/store', [DashboardController::class,'storeProduct'])->name('dashboard.products.store');
 // Route::post('/dashboard/products/{product}/update', [DashboardController::class,'updateProduct'])->name('dashboard.products.update');
