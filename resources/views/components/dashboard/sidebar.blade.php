@@ -9,7 +9,7 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="{{route("dashboard.home")}}" class="simple-text">
+                <a href="{{route("dashboard.orders.index")}}" class="simple-text">
                     BeansCafe
                 </a>
             </div>

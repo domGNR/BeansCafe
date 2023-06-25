@@ -19,7 +19,6 @@ class HomeController extends Controller
     {
         $this->categoryController = $categoryController;
         $this->productController = $productController;
-        // $this->middleware('auth');
     }
 
     /**
@@ -29,7 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('store.home');
+        $products = $this->productController->index();
+        $categories = $this->categoryController->index();
+        return view('store.home',compact('categories', 'products'));
     }
 
     public function indexShop()

@@ -1,76 +1,19 @@
-{{-- <x-layouts.app>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        {{ __('You are logged in!') }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</x-layouts.app> --}}
-
-
 <x-layouts.app>
     <section class="home-slider owl-carousel">
-        <div class="slider-item" style="background-image:{{ asset('assets/store/images/bg_1.jpg') }}">
+        <div class="slider-item" style="background-image:url({{ asset('assets/store/images/bg_1.jpg') }});">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
                     <div class="col-md-8 col-sm-12 text-center ftco-animate">
-                        <span class="subheading">Welcome</span>
-                        <h1 class="mb-4">The Best Coffee Testing Experience</h1>
-                        <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia.</p>
-                        <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#"
-                                class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="slider-item" style="background-image:{{ asset('assets/store/images/bg_2.jpg') }}">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-
-                    <div class="col-md-8 col-sm-12 text-center ftco-animate">
-                        <span class="subheading">Welcome</span>
-                        <h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
-                        <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia.</p>
-                        <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#"
-                                class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="slider-item" style="background-image:{{ asset('assets/store/images/bg_3.jpg') }}">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-
-                    <div class="col-md-8 col-sm-12 text-center ftco-animate">
-                        <span class="subheading">Welcome</span>
-                        <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
-                        <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-                            necessary regelialia.</p>
-                        <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#"
-                                class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
+                        <span class="subheading">…e all’ottavo giorno, Dio creò il caffè.</span>
+                        <h1 class="mb-4">Beans Cafe</h1>
+                        {{-- <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
+                            necessary regelialia.</p> --}}
+                        <p>
+                            <a href="{{route('store.shop')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Acquista</a> 
+                            <a href="#our-story" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">La nostra storia</a>
+                        </p>
                     </div>
 
                 </div>
@@ -86,22 +29,22 @@
                         <div class="col-md-4 d-flex ftco-animate">
                             <div class="icon"><span class="icon-phone"></span></div>
                             <div class="text">
-                                <h3>000 (123) 456 7890</h3>
-                                <p>A small river named Duden flows by their place and supplies.</p>
+                                <h3>800 700 600</h3>
+                                <p>Chiamaci per assistenza</p>
                             </div>
                         </div>
                         <div class="col-md-4 d-flex ftco-animate">
                             <div class="icon"><span class="icon-my_location"></span></div>
                             <div class="text">
-                                <h3>198 West 21th Street</h3>
-                                <p> 203 Fake St. Mountain View, San Francisco, California, USA</p>
+                                <h3>Via Edoardo Orabona, 4 </h3>
+                                <p>Bari BA, Italia</p>
                             </div>
                         </div>
                         <div class="col-md-4 d-flex ftco-animate">
                             <div class="icon"><span class="icon-clock-o"></span></div>
                             <div class="text">
-                                <h3>Open Monday-Friday</h3>
-                                <p>8:00am - 9:00pm</p>
+                                <h3>Consegne dal lunedi al Venerdi</h3>
+                                <p>8:00 - 15:00pm</p>
                             </div>
                         </div>
                     </div>
@@ -110,21 +53,17 @@
         </div>
     </section>
 
-    <section class="ftco-about d-md-flex">
-        <div class="one-half img" style="background-image:{{ asset('assets/store/images/about.jpg') }}"></div>
+    <section class="ftco-about d-md-flex" id="our-story">
+        <div class="one-half img" style="background-image:url({{ asset('assets/store/images/coffee-shop.jpg') }})"></div>
         <div class="one-half ftco-animate">
             <div class="overlap">
                 <div class="heading-section ftco-animate ">
-                    <span class="subheading">Discover</span>
-                    <h2 class="mb-4">Our Story</h2>
+                    <span class="subheading">Scopri</span>
+                    <h2 class="mb-4">La nostra storia</h2>
                 </div>
                 <div>
-                    <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it
-                        would have been rewritten a thousand times and everything that was left from its origin would be
-                        the word "and" and the Little Blind Text should turn around and return to its own, safe country.
-                        But nothing the copy said could convince her and so it didn’t take long until a few insidious
-                        Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their
-                        agency, where they abused her for their.</p>
+                    <p>
+                        Benvenuti a BeansCafe, il negozio di caffè di Bari che esplora le delizie globali. Da oltre 50 anni, siamo un punto di riferimento nella nostra città, offrendo una vasta selezione di caffè provenienti da tutto il mondo. Abbiamo viaggiato per scoprire le migliori varietà di chicchi e abbiamo fondato il nostro marchio unico, BeansCafe. Ora, con il lancio del nostro negozio online, puoi goderti il nostro caffè eccezionale comodamente a casa tua. Dai una sbirciata alle nostre miscele speciali, tostate fresche e confezionate con cura. Siamo entusiasti di condividere la passione per il caffè con una comunità globale ancora più ampia. Benvenuti nel nostro negozio online BeansCafe, dove l'amore per il caffè di Bari incontra l'aroma del mondo.</p>
                 </div>
             </div>
         </div>
@@ -139,9 +78,9 @@
                             <span class="flaticon-choices"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Easy to Order</h3>
-                            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                unorthographic.</p>
+                            <h3 class="heading">Ordini facili</h3>
+                            <p>
+                                Con pochi clic nel nostro negozio online, hai accesso a una varietà di prodotti di alta qualità, pronti per essere consegnati direttamente a casa tua.</p>
                         </div>
                     </div>
                 </div>
@@ -151,9 +90,8 @@
                             <span class="flaticon-delivery-truck"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Fastest Delivery</h3>
-                            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                unorthographic.</p>
+                            <h3 class="heading">Consegna rapida</h3>
+                            <p>I tuoi prodotti arriveranno tempestivamente, garantendo un'esperienza di acquisto senza attese.</p>
                         </div>
                     </div>
                 </div>
@@ -163,9 +101,8 @@
                             <span class="flaticon-coffee-bean"></span>
                         </div>
                         <div class="media-body">
-                            <h3 class="heading">Quality Coffee</h3>
-                            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                unorthographic.</p>
+                            <h3 class="heading">Qualità caffè</h3>
+                            <p>Il caffè di qualità superiore. I nostri chicchi accuratamente selezionati e tostati offrono un gusto ricco e una deliziosa esperienza di caffè..</p>
                         </div>
                     </div>
                 </div>
@@ -173,347 +110,59 @@
         </div>
     </section>
 
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 pr-md-5">
-                    <div class="heading-section text-md-right ftco-animate">
-                        <span class="subheading">Discover</span>
-                        <h2 class="mb-4">Our Menu</h2>
-                        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and
-                            Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the
-                            coast of the Semantics, a large language ocean.</p>
-                        <p><a href="#" class="btn btn-primary btn-outline-primary px-4 py-3">View Full Menu</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="menu-entry">
-                                <a href="#" class="img"
-                                    style="background-image:{{ asset('assets/store/images/menu-1.jpg') }}"></a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="menu-entry mt-lg-4">
-                                <a href="#" class="img"
-                                    style="background-image:{{ asset('assets/store/images/menu-2.jpg') }}"></a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="menu-entry">
-                                <a href="#" class="img"
-                                    style="background-image:{{ asset('assets/store/images/menu-3.jpg') }}"></a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="menu-entry mt-lg-4">
-                                <a href="#" class="img"
-                                    style="background-image:{{ asset('assets/store/images/menu-4.jpg') }}"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="ftco-counter ftco-bg-dark img" id="section-counter"
-        style="background-image:{{ asset('assets/store/images/bg_2.jpg') }}" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-10">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                            <div class="block-18 text-center">
-                                <div class="text">
-                                    <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                    <strong class="number" data-number="100">0</strong>
-                                    <span>Coffee Branches</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                            <div class="block-18 text-center">
-                                <div class="text">
-                                    <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                    <strong class="number" data-number="85">0</strong>
-                                    <span>Number of Awards</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                            <div class="block-18 text-center">
-                                <div class="text">
-                                    <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                    <strong class="number" data-number="10567">0</strong>
-                                    <span>Happy Customer</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
-                            <div class="block-18 text-center">
-                                <div class="text">
-                                    <div class="icon"><span class="flaticon-coffee-cup"></span></div>
-                                    <strong class="number" data-number="900">0</strong>
-                                    <span>Staff</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-{{-- 
-    <section class="ftco-section">
-        <div class="container">
-            <div class="row justify-content-center mb-5 pb-3">
-                <div class="col-md-7 heading-section ftco-animate text-center">
-                    <span class="subheading">Discover</span>
-                    <h2 class="mb-4">Best Coffee Sellers</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                        live the blind texts.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="menu-entry">
-                        <a href="#" class="img"
-                            style="background-image:{{ asset('assets/store/images/menu-1.jpg') }}"></a>
-                        <div class="text text-center pt-4">
-                            <h3><a href="#">Coffee Capuccino</a></h3>
-                            <p>A small river named Duden flows by their place and supplies</p>
-                            <p class="price"><span>$5.90</span></p>
-                            <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="menu-entry">
-                        <a href="#" class="img"
-                            style="background-image:{{ asset('assets/store/images/menu-2.jpg') }}"></a>
-                        <div class="text text-center pt-4">
-                            <h3><a href="#">Coffee Capuccino</a></h3>
-                            <p>A small river named Duden flows by their place and supplies</p>
-                            <p class="price"><span>$5.90</span></p>
-                            <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="menu-entry">
-                        <a href="#" class="img"
-                            style="background-image:{{ asset('assets/store/images/menu-3.jpg') }}"></a>
-                        <div class="text text-center pt-4">
-                            <h3><a href="#">Coffee Capuccino</a></h3>
-                            <p>A small river named Duden flows by their place and supplies</p>
-                            <p class="price"><span>$5.90</span></p>
-                            <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="menu-entry">
-                        <a href="#" class="img"
-                            style="background-image:{{ asset('assets/store/images/menu-4.jpg') }}"></a>
-                        <div class="text text-center pt-4">
-                            <h3><a href="#">Coffee Capuccino</a></h3>
-                            <p>A small river named Duden flows by their place and supplies</p>
-                            <p class="price"><span>$5.90</span></p>
-                            <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
-
+    @isset($products)
+    @if (count($products) > 0)
     <section class="ftco-menu">
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-md-7 heading-section text-center ftco-animate">
-                    <span class="subheading">Discover</span>
-                    <h2 class="mb-4">Our Products</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                        live the blind texts.</p>
+                    <span class="subheading">Scopri</span>
+                    <h2 class="mb-4">I nostri prodotti</h2>
+                    {{-- <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                        live the blind texts.</p> --}}
                 </div>
             </div>
             <div class="row d-md-flex">
-                <div class="col-lg-12 ftco-animate p-md-5">
+                <div class="col-lg-12 ftco-animate p-md-5" id="contentSection">
+                    <div class="alert alert-success alert-dismissible fade" role="alert" id="alertBox"></div>
                     <div class="row">
                         <div class="col-md-12 nav-link-wrap mb-5">
-                            <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab"
-                                role="tablist" aria-orientation="vertical">
-                                <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1"
-                                    role="tab" aria-controls="v-pills-1" aria-selected="true">Main Dish</a>
-
-                                <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"
-                                    role="tab" aria-controls="v-pills-2" aria-selected="false">Drinks</a>
-
-                                <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3"
-                                    role="tab" aria-controls="v-pills-3" aria-selected="false">Desserts</a>
-                            </div>
+                                <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab"
+                                    role="tablist" aria-orientation="vertical">
+                                    @foreach ($categories as $category)
+                                        <a class="nav-link {{ $category->id == $categories[0]->id ? 'active' : '' }}"
+                                            id={{ 'pill-' . $category->slug . '-tab' }} data-toggle="pill"
+                                            href={{ '#' . $category->slug }} role="tab">{{ $category->name }}</a>
+                                    @endforeach
+                                </div>
                         </div>
                         <div class="col-md-12 d-flex align-items-center">
-
                             <div class="tab-content ftco-animate" id="v-pills-tabContent">
-
-                                <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
-                                    aria-labelledby="v-pills-1-tab">
-                                    <div class="row">
-                                        <div class="col-md-4 text-center">
-                                            <div class="menu-wrap">
-                                                <a href="#" class="menu-img img mb-4"
-                                                    style="background-image:{{ asset('assets/store/images/dish-1.jpg') }}"></a>
-                                                <div class="text">
-                                                    <h3><a href="#">Grilled Beef</a></h3>
-                                                    <p>Far far away, behind the word mountains, far from the countries
-                                                        Vokalia and Consonantia.</p>
-                                                    <p class="price"><span>$2.90</span></p>
-                                                    <p><a href="#"
-                                                            class="btn btn-primary btn-outline-primary">Add to cart</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            <div class="menu-wrap">
-                                                <a href="#" class="menu-img img mb-4"
-                                                    style="background-image:{{ asset('assets/store/images/dish-2.jpg') }}"></a>
-                                                <div class="text">
-                                                    <h3><a href="#">Grilled Beef</a></h3>
-                                                    <p>Far far away, behind the word mountains, far from the countries
-                                                        Vokalia and Consonantia.</p>
-                                                    <p class="price"><span>$2.90</span></p>
-                                                    <p><a href="#"
-                                                            class="btn btn-primary btn-outline-primary">Add to cart</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            <div class="menu-wrap">
-                                                <a href="#" class="menu-img img mb-4"
-                                                    style="background-image:{{ asset('assets/store/images/dish-3.jpg') }}"></a>
-                                                <div class="text">
-                                                    <h3><a href="#">Grilled Beef</a></h3>
-                                                    <p>Far far away, behind the word mountains, far from the countries
-                                                        Vokalia and Consonantia.</p>
-                                                    <p class="price"><span>$2.90</span></p>
-                                                    <p><a href="#"
-                                                            class="btn btn-primary btn-outline-primary">Add to cart</a>
-                                                    </p>
-                                                </div>
-                                            </div>
+                                @foreach ($categories as $category)
+                                    <div class="tab-pane fade {{ $category->id == $categories[0]->id ? 'show active' : '' }} " id={{ $category->slug }} role="tabpanel">
+                                        <div class="row">
+                                            @foreach ($products as $product)
+                                                @if ($product->category->id == $category->id)
+                                                    <div class="col-md-3"style="min-width:250px !important;">
+                                                        <div class="menu-entry">
+                                                            <a class="img" href="{{ route('store.shop.single', $product) }}"
+                                                                style="background-image: url({{($product->cover ? asset('assets/store/images/products/' . $product->cover) : asset('assets/store/images/placeholder.jpg'))}})"></a>
+                                                            <div class="text text-center pt-4">
+                                                                <h3><a href="{{ route('store.shop.single', $product) }}">{{ $product->name }}</a></h3>
+                                                                <p>{{ $product->description }}</p>
+                                                                <p class="price"><span>€ {{ $product->price }}</span>
+                                                                </p>
+                                                                <button
+                                                                    onClick="addToCart((createItem( {{ $product->id }} , '{{$product->name}}', {{ $product->price }} , 1 )))"
+                                                                    class="btn btn-primary btn-outline-primary">Aggiungi al carrello</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="v-pills-2" role="tabpanel"
-                                    aria-labelledby="v-pills-2-tab">
-                                    <div class="row">
-                                        <div class="col-md-4 text-center">
-                                            <div class="menu-wrap">
-                                                <a href="#" class="menu-img img mb-4"
-                                                    style="background-image:{{ asset('assets/store/images/drink-1.jpg') }}"></a>
-                                                <div class="text">
-                                                    <h3><a href="#">Lemonade Juice</a></h3>
-                                                    <p>Far far away, behind the word mountains, far from the countries
-                                                        Vokalia and Consonantia.</p>
-                                                    <p class="price"><span>$2.90</span></p>
-                                                    <p><a href="#"
-                                                            class="btn btn-primary btn-outline-primary">Add to cart</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            <div class="menu-wrap">
-                                                <a href="#" class="menu-img img mb-4"
-                                                    style="background-image:{{ asset('assets/store/images/drink-2.jpg') }}"></a>
-                                                <div class="text">
-                                                    <h3><a href="#">Pineapple Juice</a></h3>
-                                                    <p>Far far away, behind the word mountains, far from the countries
-                                                        Vokalia and Consonantia.</p>
-                                                    <p class="price"><span>$2.90</span></p>
-                                                    <p><a href="#"
-                                                            class="btn btn-primary btn-outline-primary">Add to cart</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            <div class="menu-wrap">
-                                                <a href="#" class="menu-img img mb-4"
-                                                    style="background-image:{{ asset('assets/store/images/drink-3.jpg') }}"></a>
-                                                <div class="text">
-                                                    <h3><a href="#">Soda Drinks</a></h3>
-                                                    <p>Far far away, behind the word mountains, far from the countries
-                                                        Vokalia and Consonantia.</p>
-                                                    <p class="price"><span>$2.90</span></p>
-                                                    <p><a href="#"
-                                                            class="btn btn-primary btn-outline-primary">Add to cart</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="v-pills-3" role="tabpanel"
-                                    aria-labelledby="v-pills-3-tab">
-                                    <div class="row">
-                                        <div class="col-md-4 text-center">
-                                            <div class="menu-wrap">
-                                                <a href="#" class="menu-img img mb-4"
-                                                    style="background-image:{{ asset('assets/store/images/dessert-1.jpg') }}"></a>
-                                                <div class="text">
-                                                    <h3><a href="#">Hot Cake Honey</a></h3>
-                                                    <p>Far far away, behind the word mountains, far from the countries
-                                                        Vokalia and Consonantia.</p>
-                                                    <p class="price"><span>$2.90</span></p>
-                                                    <p><a href="#"
-                                                            class="btn btn-primary btn-outline-primary">Add to cart</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            <div class="menu-wrap">
-                                                <a href="#" class="menu-img img mb-4"
-                                                    style="background-image:{{ asset('assets/store/images/dessert-2.jpg') }}"></a>
-                                                <div class="text">
-                                                    <h3><a href="#">Hot Cake Honey</a></h3>
-                                                    <p>Far far away, behind the word mountains, far from the countries
-                                                        Vokalia and Consonantia.</p>
-                                                    <p class="price"><span>$2.90</span></p>
-                                                    <p><a href="#"
-                                                            class="btn btn-primary btn-outline-primary">Add to cart</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 text-center">
-                                            <div class="menu-wrap">
-                                                <a href="#" class="menu-img img mb-4"
-                                                    style="background-image:{{ asset('assets/store/images/dessert-3.jpg') }}"></a>
-                                                <div class="text">
-                                                    <h3><a href="#">Hot Cake Honey</a></h3>
-                                                    <p>Far far away, behind the word mountains, far from the countries
-                                                        Vokalia and Consonantia.</p>
-                                                    <p class="price"><span>$2.90</span></p>
-                                                    <p><a href="#"
-                                                            class="btn btn-primary btn-outline-primary">Add to cart</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -521,101 +170,6 @@
             </div>
         </div>
     </section>
-
-    {{-- <section class="ftco-section img" id="ftco-testimony"
-        style="background-image:{{ asset('assets/store/images/bg_1.jpg') }}" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-md-7 heading-section text-center ftco-animate">
-                    <span class="subheading">Testimony</span>
-                    <h2 class="mb-4">Customers Says</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                        live the blind texts.</p>
-                </div>
-            </div>
-        </div>
-        <div class="container-wrap">
-            <div class="row d-flex no-gutters">
-                <div class="col-lg align-self-sm-end ftco-animate">
-                    <div class="testimony">
-                        <blockquote>
-                            <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an
-                                almost unorthographic life One day however a small.&rdquo;</p>
-                        </blockquote>
-                        <div class="author d-flex mt-4">
-                            <div class="image mr-3 align-self-center">
-                                <img src="{{ asset('assets/store/images/person_1.jpg') }}" alt="">
-                            </div>
-                            <div class="name align-self-center">Louise Kelly <span class="position">Illustrator
-                                    Designer</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg align-self-sm-end">
-                    <div class="testimony overlay">
-                        <blockquote>
-                            <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an
-                                almost unorthographic life One day however a small line of blind text by the name of
-                                Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-                        </blockquote>
-                        <div class="author d-flex mt-4">
-                            <div class="image mr-3 align-self-center">
-                                <img src="{{ asset('assets/store/images/person_2.jpg') }}" alt="">
-                            </div>
-                            <div class="name align-self-center">Louise Kelly <span class="position">Illustrator
-                                    Designer</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg align-self-sm-end ftco-animate">
-                    <div class="testimony">
-                        <blockquote>
-                            <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an
-                                almost unorthographic life One day however a small line of blind text by the name.
-                                &rdquo;</p>
-                        </blockquote>
-                        <div class="author d-flex mt-4">
-                            <div class="image mr-3 align-self-center">
-                                <img src="{{ asset('assets/store/images/person_3.jpg') }}" alt="">
-                            </div>
-                            <div class="name align-self-center">Louise Kelly <span class="position">Illustrator
-                                    Designer</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg align-self-sm-end">
-                    <div class="testimony overlay">
-                        <blockquote>
-                            <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an
-                                almost unorthographic life One day however.&rdquo;</p>
-                        </blockquote>
-                        <div class="author d-flex mt-4">
-                            <div class="image mr-3 align-self-center">
-                                <img src="{{ asset('assets/store/images/person_2.jpg') }}" alt="">
-                            </div>
-                            <div class="name align-self-center">Louise Kelly <span class="position">Illustrator
-                                    Designer</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg align-self-sm-end ftco-animate">
-                    <div class="testimony">
-                        <blockquote>
-                            <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an
-                                almost unorthographic life One day however a small line of blind text by the name.
-                                &rdquo;</p>
-                        </blockquote>
-                        <div class="author d-flex mt-4">
-                            <div class="image mr-3 align-self-center">
-                                <img src="{{ asset('assets/store/images/person_3.jpg') }}" alt="">
-                            </div>
-                            <div class="name align-self-center">Louise Kelly <span class="position">Illustrator
-                                    Designer</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
+    @endif
+        @endisset
 </x-layouts.app>

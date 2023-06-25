@@ -40,7 +40,7 @@
     <div id="app">
         <x-store.header />
 
-        <main class="py-4">
+        <main class="pb-4">
             {{ $slot }}
         </main>
         <x-store.footer />

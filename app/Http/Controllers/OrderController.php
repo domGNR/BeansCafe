@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Auth;
@@ -23,16 +24,8 @@ class OrderController extends Controller
     {
         $user = Auth::user();
         $orders = $user->orders;
-        return view('store.orders',compact('orders'));
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $orderStatuses = OrderStatus::all();
+        return view('store.orders',compact('orders','orderStatuses'));
     }
 
     /**
@@ -102,19 +95,10 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        return view('store.order',compact('store'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Order $order)
     {
-        dd($order);
         return view('store.order',compact('order'));
     }
 

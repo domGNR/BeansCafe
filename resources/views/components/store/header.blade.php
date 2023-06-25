@@ -2,7 +2,7 @@
     <div class="container">
         {{-- <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a> --}}
         <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+            <img src="{{ asset('assets/store/images/logo.png') }}" alt="" height="35px">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,6 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="{{ route('store.home') }}" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="nav-item"><a href="{{ route('store.shop') }}" class="nav-link">Shop</a></li>
                 <!-- Authentication Links -->
                 @guest
@@ -43,7 +42,7 @@
                                 @csrf
                             </form>
                             @if (Auth::user()->role_id == 1)
-                                <a class="dropdown-item" href="{{ route('dashboard.home') }}">
+                                <a class="dropdown-item" href="{{ route('dashboard.orders.index') }}">
                                     {{ __('Admin Dashboard') }}
                                 </a>
                             @endif

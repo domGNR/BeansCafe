@@ -4,7 +4,7 @@
             cursor: pointer;
         }
     </style>
-    <div class="container-fluid my-5 py-5" style="width:90%">
+    <div class="container my-5 py-5" >
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -33,9 +33,13 @@
                                         <td>{{ $order->address }}</td>
                                         <td>{{ $order->city }}</td>
                                         <td>{{ $order->zip }}</td>
-                                        <td>{{ $order->status_id }}</td>
+                                        @foreach ($orderStatuses as $orderStatus)
+                                        @if ($order->id == $orderStatus->id)
+                                            <td>{{ $orderStatus->name }}</td>
+                                        @endif
+                                        @endforeach
                                         <td>{{ $order->trackig }}</td>
-                                        <td>{{ $order->total }}</td>
+                                        <td>€ {{ $order->total }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

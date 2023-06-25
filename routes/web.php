@@ -32,8 +32,6 @@ Route::get('/orders/{order}',[OrderController::class,'edit'])->name('order.edit'
 Route::post('/orders/store',[OrderController::class,'store'])->name('order.store');
 
 
-Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard.home');
-
 // Users
 Route::get('/dashboard/users', [DashboardController::class,'indexUsers'])->name('dashboard.users.index');
 Route::get('/dashboard/users/{user}', [DashboardController::class,'editUser'])->name('dashboard.users.edit');
