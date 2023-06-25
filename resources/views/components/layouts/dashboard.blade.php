@@ -26,6 +26,9 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="{{ asset('assets/dashboard/css/pe-icon-7-stroke.css') }}" rel="stylesheet" />
 
+    <link rel="stylesheet" href={{ asset('assets/store/css/owl.carousel.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/store/css/owl.theme.default.min.css') }}>
+
     <style>
         tr.clickable-row:hover {
             cursor: pointer;
@@ -52,16 +55,16 @@
 <script src="{{ asset('assets/dashboard/js/jquery.3.2.1.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/dashboard/js/bootstrap.min.js') }}" type="text/javascript"></script>
 
-<!--  Charts Plugin -->
-<script src="{{ asset('assets/dashboard/js/chartist.min.js') }}"></script>
+<script src={{ asset('assets/store/js/owl.carousel.min.js') }}></script>
 
 <!--  Notifications Plugin    -->
 <script src="{{ asset('assets/dashboard/js/bootstrap-notify.js') }}"></script>
 
 
-
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="{{ asset('assets/dashboard/js/light-bootstrap-dashboard.js?v=1.4.0') }}"></script>
+
+
 
 <script type="text/javascript">
     $(document).ready(function() {

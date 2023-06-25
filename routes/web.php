@@ -64,7 +64,7 @@ Route::delete('/dashboard/products/{product}/delete', [DashboardController::clas
 
 // Photos
 Route::delete('/dashboard/photos/{photo}/delete', [DashboardController::class,'destroyPhoto'])->name('dashboard.photos.destroy');
-Route::post('/dashboard/photos/{cover}/delete', [DashboardController::class,'destroyCover'])->name('dashboard.cover.destroy');
+Route::post('/dashboard/photos/{product}/cover/delete', [DashboardController::class,'destroyCover'])->name('dashboard.cover.destroy');
 
 // Orders
 Route::get('/dashboard/orders', [DashboardController::class,'indexOrders'])->name('dashboard.orders.index');

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MailController;
 
 class OrderController extends Controller
 {
@@ -84,6 +87,11 @@ class OrderController extends Controller
                 $buyedProduct->stock_qty = $buyedProduct['stock_qty']-$product['stock_qty'];
                 $buyedProduct->save();
             }
+
+            
+            $completeOrder = compact('order','products');
+            MailController::sendOrderConfirmation($completeOrder,Auth::user()['email'],User::find(3)->email);
+
             return view('store.orderComplete');
 
         }

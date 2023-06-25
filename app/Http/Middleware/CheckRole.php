@@ -18,6 +18,7 @@ class CheckRole
     {
         if (!Auth::check() || Auth::user()->role_id != $role) {
             abort(403, 'Accesso negato.');
+            redirect()->back();
         }
 
         return $next($request);

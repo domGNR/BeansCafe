@@ -53,7 +53,6 @@ class ProductController extends Controller
             $id = $product->id;
             
             if ($request->hasFile("images")) {
-                //dd($request);
                 $files = $request->file("images");
                 foreach ($files as $file) {
                     $fileName = $this->getUniqueImageName($file);
@@ -109,6 +108,31 @@ class ProductController extends Controller
         $product->description = $request['description'];
         $product->price = $request['price'];
         $product->stock_qty = $request['stock_qty'];
+        if($request->has('cover_image') && $request->hasFile("cover_image")){
+            // remove cover
+            $photoPath = public_path("assets\\store\\images\\products\\".$product->cover);
+            $deletedFile = File::delete($photoPath);
+
+            // insert new cover
+            $file = $request->file("cover_image");
+            $fileName = $this->getUniqueImageName($file);
+            $file->move(\public_path("assets/store/images/products/"), $fileName);
+            $product->cover = $fileName;
+        }
+
+        if ($request->hasFile("images")) {
+            $files = $request->file("images");
+            foreach ($files as $file) {
+                $fileName = $this->getUniqueImageName($file);
+                $file->move(\public_path("assets/store/images/products/"), $fileName);
+                $photo = new Photo([
+                    "product_id" => $product->id,
+                    "url" => $fileName
+                ]);
+                $photo->save();
+            }
+        }
+        
         $product->save();
     }
 

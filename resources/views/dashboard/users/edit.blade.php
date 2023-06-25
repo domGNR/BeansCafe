@@ -24,9 +24,9 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="full_name" style="text-transform:capitalize">Nome e cognome</label>
-                            <input type="text" class="form-control" name="full_name" value="{{ $user['full_name'] }}">
-                            @error('full_name')
+                            <label for="name" style="text-transform:capitalize">Nome e cognome</label>
+                            <input type="text" class="form-control" name="name" value="{{ $user['name'] }}">
+                            @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>

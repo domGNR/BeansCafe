@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         return User::get()
             ->map
-            ->only(['id', 'full_name', 'email', 'role_id']);
+            ->only(['id', 'name', 'email', 'role_id']);
     }
 
     /**
@@ -46,7 +46,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return $user->only(['id', 'full_name', 'email', 'role_id']);
+        return $user->only(['id', 'name', 'email', 'role_id']);
     }
 
     /**

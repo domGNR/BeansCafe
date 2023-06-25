@@ -30,7 +30,7 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->full_name }}
+                            {{ Auth::user()->name }}
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -47,7 +47,7 @@
                                     {{ __('Admin Dashboard') }}
                                 </a>
                             @endif
-                            @if (Auth::user()->role_id == 1)
+                            @if (Auth::user()->role_id == 2)
                             <a class="dropdown-item" href="{{ route('order.index') }}">
                                 {{ __('I miei ordini') }}
                             </a>
