@@ -28,5 +28,10 @@ class OrderStatusSeeder extends Seeder
         DB::table('order_statuses')->insert([
             'name' => 'consegnato',
         ]);
+
+        DB::table('order_statuses')->insert([
+            'name' => 'annullato',
+        ]);
+
     }
 }

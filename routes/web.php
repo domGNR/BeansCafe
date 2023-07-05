@@ -66,6 +66,8 @@ Route::post('/dashboard/photos/{product}/cover/delete', [DashboardController::cl
 
 // Orders
 Route::get('/dashboard/orders', [DashboardController::class,'indexOrders'])->name('dashboard.orders.index');
-Route::get('/dashboard/orders/{product}', [DashboardController::class,'editOrder'])->name('dashboard.orders.edit');
+Route::get('/dashboard/orders/{order}', [DashboardController::class,'editOrder'])->name('dashboard.orders.edit');
+Route::post('/dashboard/orders/{order}/update', [DashboardController::class,'updateOrder'])->name('dashboard.orders.update');
+Route::post('/dashboard/categories/{order}/cancel', [DashboardController::class,'cancelOrder'])->name('dashboard.orders.cancel');
 // Route::post('/dashboard/products/store', [DashboardController::class,'storeProduct'])->name('dashboard.products.store');
 // Route::post('/dashboard/products/{product}/update', [DashboardController::class,'updateProduct'])->name('dashboard.products.update');

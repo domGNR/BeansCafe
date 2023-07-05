@@ -12,6 +12,11 @@ use App\Models\Category;
 use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use App\Http\Middleware\CheckRole;
+use App\Http\Requests\BrandRequest;
+use App\Http\Requests\OrderRequest;
+use App\Http\Requests\ProductRequest;
+use App\Http\Requests\CategoryRequest;
+use Illuminate\Database\QueryException;
 use App\Http\Controllers\UserController;
 
 class DashboardController extends Controller
@@ -26,15 +31,17 @@ class DashboardController extends Controller
     private $brandController;
     private $categoryController;
     private $productController;
+    private $orderController;
 
-    public function __construct(UserController $userController,BrandController $brandController,CategoryController $categoryController,ProductController $productController)
+    public function __construct(OrderController $orderController, UserController $userController, BrandController $brandController, CategoryController $categoryController, ProductController $productController)
     {
         $this->userController = $userController;
+        $this->orderController = $orderController;
         $this->brandController = $brandController;
         $this->categoryController = $categoryController;
         $this->productController = $productController;
         $this->middleware('auth');
-        $this->middleware(CheckRole::class . ':1'); 
+        $this->middleware(CheckRole::class . ':1');
     }
 
     /**
@@ -55,9 +62,9 @@ class DashboardController extends Controller
 
     public function editUser(User $user)
     {
-         $user = $this->userController->edit($user);
-         $roles = Role::all();
-         return view('dashboard.users.edit', compact('user','roles'));
+        $user = $this->userController->edit($user);
+        $roles = Role::all();
+        return view('dashboard.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -65,8 +72,8 @@ class DashboardController extends Controller
      */
     public function updateUser(Request $request, User $user)
     {
-        $this->userController->update($request,$user);
-        return redirect(route('dashboard.users.index'))->with('message', 'L\'utente stato modificato correttamente');
+        $this->userController->update($request, $user);
+        return redirect(route('dashboard.users.index'))->with('success', 'L\'utente stato modificato correttamente');
     }
 
     /**
@@ -84,10 +91,10 @@ class DashboardController extends Controller
         return view('dashboard.brands.index', compact('brands'));
     }
 
-    public function storeBrand(Request $request)
+    public function storeBrand(BrandRequest $request)
     {
         $this->brandController->store($request);
-        return redirect()->route('dashboard.brands.index')->with('success','Brand aggiunto correttamente.');
+        return redirect()->route('dashboard.brands.index')->with('success', 'Brand aggiunto correttamente.');
     }
 
     public function editBrand(Brand $brand)
@@ -95,17 +102,22 @@ class DashboardController extends Controller
         return view('dashboard.brands.edit', compact('brand'));
     }
 
-    public function updateBrand(Request $request, Brand $brand)
+    public function updateBrand(BrandRequest $request, Brand $brand)
     {
-        $this->brandController->update($request,$brand);
-        return redirect(route('dashboard.brands.index'))->with('message', 'L\'utente stato modificato correttamente');
+        $this->brandController->update($request, $brand);
+        return redirect(route('dashboard.brands.index'))->with('success', 'L\'utente stato modificato correttamente');
     }
 
 
     public function destroyBrand(Brand $brand)
     {
+        try {
         $this->brandController->destroy($brand);
-        return redirect(route("dashboard.brands.index"))->with('message', "$brand->name è stato eliminato");
+        return redirect(route("dashboard.brands.index"))->with('success', "$brand->name è stato eliminato");
+        } catch (QueryException $e) {
+            return redirect()->back()->with('error', 'Impossibile eliminare il record. È ancora vincolato ad altri record.');
+        }
+
     }
 
 
@@ -115,10 +127,10 @@ class DashboardController extends Controller
         return view('dashboard.categories.index', compact('categories'));
     }
 
-    public function storeCategory(Request $request)
+    public function storeCategory(CategoryRequest $request)
     {
         $this->categoryController->store($request);
-        return redirect()->route('dashboard.categories.index')->with('success','category aggiunto correttamente.');
+        return redirect()->route('dashboard.categories.index')->with('success', 'category aggiunto correttamente.');
     }
 
     public function editCategory(Category $category)
@@ -126,17 +138,21 @@ class DashboardController extends Controller
         return view('dashboard.categories.edit', compact('category'));
     }
 
-    public function updateCategory(Request $request, Category $category)
+    public function updateCategory(CategoryRequest $request, Category $category)
     {
-        $this->categoryController->update($request,$category);
-        return redirect(route('dashboard.categories.index'))->with('message', 'L\'utente stato modificato correttamente');
+        $this->categoryController->update($request, $category);
+        return redirect(route('dashboard.categories.index'))->with('success', 'L\'utente stato modificato correttamente');
     }
 
 
     public function destroyCategory(Category $category)
     {
-        $this->categoryController->destroy($category);
-        return redirect(route("dashboard.categories.index"))->with('message', "$category->name è stato eliminato");
+        try {
+            $this->categoryController->destroy($category);
+            return redirect(route("dashboard.categories.index"))->with('success', "$category->name è stato eliminato");
+        } catch (QueryException $e) {
+            return redirect()->back()->with('error', 'Impossibile eliminare il record. È ancora vincolato ad altri record.');
+        }
     }
 
     //Products
@@ -145,33 +161,37 @@ class DashboardController extends Controller
         $products = $this->productController->index();
         $categories = $this->categoryController->index();
         $brands = $this->brandController->index();
-        return view('dashboard.products.index', compact('products','categories','brands'));
+        return view('dashboard.products.index', compact('products', 'categories', 'brands'));
     }
 
-    public function storeProduct(Request $request)
+    public function storeProduct(ProductRequest $request)
     {
         $this->productController->store($request);
-        return redirect()->route('dashboard.products.index')->with('success','product aggiunto correttamente.');
+        return redirect()->route('dashboard.products.index')->with('success', 'product aggiunto correttamente.');
     }
 
     public function editProduct(Product $product)
     {
         $categories = $this->categoryController->index();
         $brands = $this->brandController->index();
-        return view('dashboard.products.edit', compact('product','categories','brands'));
+        return view('dashboard.products.edit', compact('product', 'categories', 'brands'));
     }
 
-    public function updateProduct(Request $request, Product $product)
+    public function updateProduct(ProductRequest $request, Product $product)
     {
-        $this->productController->update($request,$product);
-        return redirect(route('dashboard.products.index'))->with('message', 'Il prodotto è stato modificato correttamente');
+        $this->productController->update($request, $product);
+        return redirect(route('dashboard.products.index'))->with('success', 'Il prodotto è stato modificato correttamente');
     }
 
 
     public function destroyProduct(Product $product)
     {
-        $this->productController->destroy($product);
-        return redirect(route("dashboard.products.index"))->with('message', "$product->name è stato eliminato");
+        try {
+            $this->productController->destroy($product);
+            return redirect(route("dashboard.products.index"))->with('success', 'Record eliminato con successo.');
+        } catch (QueryException $e) {
+            return redirect()->back()->with('error', 'Impossibile eliminare il record. È ancora vincolato ad altri record.');
+        }
     }
 
 
@@ -179,22 +199,45 @@ class DashboardController extends Controller
     {
         $orders = Order::all();
         $orderStatuses = OrderStatus::all();
-        return view('dashboard.orders.index',compact(['orders','orderStatuses']));
+        return view('dashboard.orders.index', compact(['orders', 'orderStatuses']));
     }
 
 
-    function destroyPhoto(Photo $photo) {
-
+    function destroyPhoto(Photo $photo)
+    {
         $this->productController->destroyPhoto($photo);
         return redirect()->back();
     }
 
-    function destroyCover(Product $product) {
+    function destroyCover(Product $product)
+    {
         $this->productController->destroyCover($product);
         return redirect()->back();
     }
 
 
+    function editOrder(Order $order)
+    {
+        $this->orderController->edit($order);
+        $orderStatuses = OrderStatus::all();
+        return view('dashboard.orders.edit', compact(['order', 'orderStatuses']));
+    }
 
+    public function updateOrder(OrderRequest $request, Order $order)
+    {
+        $this->orderController->update($request, $order);
+        return redirect(route('dashboard.orders.index'))->with('success', 'L\'ordine stato modificato correttamente');
+    }
+    
+
+    function cancelOrder(Order $order)
+    {
+        try {
+            $this->orderController->cancel($order);
+            return redirect(route('dashboard.orders.index'))->with('success', 'Record eliminato con successo.');
+        } catch (QueryException $e) {
+            return redirect()->back()->with('error', 'Impossibile eliminare il record. È ancora vincolato ad altri record.');
+        }
+    }
 
 }

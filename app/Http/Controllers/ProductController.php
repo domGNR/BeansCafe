@@ -6,6 +6,7 @@ use App\Models\Photo;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -29,7 +30,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $id = '';
         if ($request->hasFile("cover_image")) {
@@ -100,7 +101,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
 
         $product->name = $request['name'];
@@ -108,6 +109,7 @@ class ProductController extends Controller
         $product->description = $request['description'];
         $product->price = $request['price'];
         $product->stock_qty = $request['stock_qty'];
+        $product->category_id = $request['category_id'];
         if($request->has('cover_image') && $request->hasFile("cover_image")){
             // remove cover
             $photoPath = public_path("assets\\store\\images\\products\\".$product->cover);

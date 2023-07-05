@@ -31,9 +31,9 @@ addToCart = (item) => {
 
 // Funzione per rimuovere un elemento dal carrello
 removeFromCart = (item) => {
-    const removeItem = (cart,item) => {
+    const removeItem = (cart,_item) => {
         // Rimuove l'elemento dal carrello
-        const index = cart.findIndex(item => item.code === item.code);
+        const index = cart.findIndex(item => item.code === _item.code);
         if (index !== -1) {
             // Rimuovi l'oggetto dall'array
             cart.splice(index, 1);
@@ -50,7 +50,10 @@ removeFromCart = (item) => {
         const selectedItem = cart.find(el => el?.code === item.code)
         if (selectedItem) {
             selectedItem.qty = selectedItem.qty - item.qty
-            if (selectedItem.qty === 0) cart = removeItem(cart,item)
+            if (selectedItem.qty === 0) {
+                console.log('asd');
+                cart = removeItem(cart,item)
+            }
         }
     }
     else cart = removeItem(cart,item)

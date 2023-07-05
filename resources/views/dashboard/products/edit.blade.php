@@ -1,5 +1,3 @@
-{{-- {{dd($product->photos)}} --}}
-
 <x-layouts.dashboard>
     <div class="container-fluid">
         <div class="container-fluid">
@@ -43,6 +41,17 @@
                             <input type="number" class="form-control" name="price" min="0.00" max="10000.00"
                                 step="0.01" value="{{ $product->price }}" />
                             @error('price')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="category_id" style="text-transform:capitalize">Categoria</label>
+                            <select class="form-control" name="category_id" value="{{ $product->category->id }}">
+                                @foreach ($categories as $category)
+                                    <option value={{$category->id}} {{$product->category->id == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>

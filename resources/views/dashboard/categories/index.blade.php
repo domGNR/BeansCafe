@@ -19,13 +19,6 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="description" style="text-transform:capitalize">description</label>
-                            <input type="text" class="form-control" name="description">
-                            @error('description')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
                         <button class="btn btn-primary mb-3 d-block">Aggiungi</button>
                     </form>
                 </div>
@@ -37,7 +30,6 @@
                     <div class="card">
                         <div class="header">
                             <h4 class="title">Categorie</h4>
-                            {{-- <p class="category">Here is a subtitle for this table</p> --}}
                         </div>
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">

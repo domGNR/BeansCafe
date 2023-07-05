@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use App\Http\Middleware\CheckRole;
+use App\Http\Requests\OrderRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MailController;
 
@@ -31,7 +32,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
         $cart = collect(json_decode($request->cartData, true));
         $redirectToCart = false;
@@ -83,7 +84,7 @@ class OrderController extends Controller
 
             
             $completeOrder = compact('order','products');
-            MailController::sendOrderConfirmation($completeOrder,Auth::user()['email'],User::find(3)->email);
+            MailController::sendOrderConfirmation($completeOrder,Auth::user()['email'],User::find(2)->email);
 
             return view('store.orderComplete');
 
@@ -105,20 +106,29 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(OrderRequest $request, Order $order)
     {
         $order->name = $request['name'];
         $order->surname = $request['surname'];
-        $order->state = $request['state'];
-        $order->price = $request['price'];
         $order->city = $request['city'];
         $order->zip = $request['zip'];
+        $order->zip = $request['address'];
         $order->tracking = $request['tracking'];
         $order->status_id = $request['status_id'];
-        $order->total = $request['total'];
         $order->save();
     }
 
+    public function cancel(Order $order)
+    {
+        foreach ($order->products as $orderProduct) {
+            $product = Product::find($orderProduct->id);
+            $product->stock_qty = $product->stock_qty + $orderProduct->pivot->qty;
+            $orderProduct->pivot->canceled = true;
+            $product->save();
+        }
+        $order->status_id = 5;
+        $order->save();
+    }
     /**
      * Remove the specified resource from storage.
      */

@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->float('total',2);
             $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('order_statuses')->onDelete('cascade');
+            $table->foreign('status_id')->references('id')->on('order_statuses')->onDelete('restrict');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->string('tracking')->nullable();
             $table->string('name');
             $table->string('surname');
