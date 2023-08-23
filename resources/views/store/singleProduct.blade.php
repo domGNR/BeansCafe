@@ -101,7 +101,7 @@
 
     addSingleProductToCart = () => {
         const el = document.querySelector("#quantity")
-        addToCart(createItem(product.code, product.name, product.price, parseInt(el.value)))
+        addToCart(createItem(product.id, product.name, product.price, parseInt(el.value)))
     }
 
     const addToCartButton = document.querySelector("#addToCartButton")

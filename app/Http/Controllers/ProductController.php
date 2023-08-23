@@ -33,37 +33,39 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $id = '';
+
+        
         if ($request->hasFile("cover_image")) {
             $file = $request->file("cover_image");
             $fileName = $this->getUniqueImageName($file);
             $file->move(\public_path("assets/store/images/products/"), $fileName);
+        }
+
+        $product = new Product([
+            "name" => $request->name,
+            "description" => $request->description,
+            "slug" => $request->slug,
+            "stock_qty" => $request->stock_qty,
+            "cover" => isset($fileName) ? $fileName : '',
+            "price" => $request->price,
+            "is_show" => $request->active == 'on' ? true : false,
+            "brand_id" => $request->brand_id,
+            "category_id" => $request->category_id
+        ]);
+        $product->save();
+        $id = $product->id;
 
 
-            $product = new Product([
-                "name" => $request->name,
-                "description" => $request->description,
-                "slug" => $request->slug,
-                "stock_qty" => $request->stock_qty,
-                "cover" => $fileName,
-                "price" => $request->price,
-                "is_show" => $request->active == 'on' ? true : false,
-                "brand_id" => $request->brand_id,
-                "category_id" => $request->category_id
-            ]);
-            $product->save();
-            $id = $product->id;
-            
-            if ($request->hasFile("images")) {
-                $files = $request->file("images");
-                foreach ($files as $file) {
-                    $fileName = $this->getUniqueImageName($file);
-                    $file->move(\public_path("assets/store/images/products/"), $fileName);
-                    $photo = new Photo([
-                        "product_id" => $id,
-                        "url" => $fileName
-                    ]);
-                    $photo->save();
-                }
+        if ($request->hasFile("images")) {
+            $files = $request->file("images");
+            foreach ($files as $file) {
+                $fileName = $this->getUniqueImageName($file);
+                $file->move(\public_path("assets/store/images/products/"), $fileName);
+                $photo = new Photo([
+                    "product_id" => $id,
+                    "url" => $fileName
+                ]);
+                $photo->save();
             }
         }
     }

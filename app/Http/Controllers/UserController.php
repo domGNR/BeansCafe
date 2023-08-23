@@ -56,7 +56,7 @@ class UserController extends Controller
     {
         //$user->update($request->all())
         $user->name = $request['name'];
-        // $user->role = $request['role'];
+        $user->role_id = $request['role_id'];
         $user->save();
     }
 

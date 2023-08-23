@@ -39,6 +39,7 @@ class OrderController extends Controller
         $products=collect();
 
         foreach ($cart as $item) {
+            
             $product = Product::where('id',$item['code'])->first();
             if($product['stock_qty'] - $item['qty'] < 0){
                 $redirectToCart = true;

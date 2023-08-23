@@ -73,6 +73,7 @@ class DashboardController extends Controller
     public function updateUser(Request $request, User $user)
     {
         $this->userController->update($request, $user);
+        //dd($request);
         return redirect(route('dashboard.users.index'))->with('success', 'L\'utente stato modificato correttamente');
     }
 

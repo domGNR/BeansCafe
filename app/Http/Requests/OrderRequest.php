@@ -26,7 +26,7 @@ class OrderRequest extends FormRequest
             'surname' => 'required|max:255',
             'address' => 'required|max:255',
             'city' => 'required|max:255',
-            'zip' => 'required|integer|size:5'
+            'zip' => 'required|integer|digits:5'
         ];
     }
 }

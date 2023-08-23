@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
             'slug' => 'required|max:255',
             'description' => 'required|max:255',
             'stock_qty' => 'required|integer',
-            'price' => 'required|decimal',
+            'price' => 'required|decimal:0,2',
             'category_id' => 'required',
             'brand_id' => 'required',
         ];
