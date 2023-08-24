@@ -1,4 +1,7 @@
 <x-layouts.dashboard>
+    <style>.not-allowed{
+        cursor: not-allowed;
+    }</style>
     <div class="container-fluid">
         <div class="container-fluid m-5">
             <div class="row">
@@ -24,7 +27,7 @@
                                 <tbody>
                                     @foreach ($orders as $order)
 
-                                        <tr class="clickable-row"
+                                        <tr class="{{$order->status_id==5 ? 'not-allowed disabled' : 'clickable-row'}}"
                                             data-href="{{ route('dashboard.orders.edit', $order->id) }}">
                                             <td>{{$order->id}}</td>
                                             <td>{{$order->name}}</td>

@@ -29,6 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         $products = $this->productController->index();
+        $products = $products->where('is_show',true);
         $categories = $this->categoryController->index();
         return view('store.home',compact('categories', 'products'));
     }
@@ -37,6 +38,7 @@ class HomeController extends Controller
     {
         $categories = $this->categoryController->index();
         $products = $this->productController->index();
+        $products = $products->where('is_show',true);
         return view('store.shop', compact('categories', 'products'));
     }
 

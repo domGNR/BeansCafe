@@ -56,6 +56,17 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="category_id" style="text-transform:capitalize">Brand</label>
+                            <select class="form-control" name="brand_id" value="{{ $product->brand_id }}">
+                                @foreach ($brands as $brand)
+                                    <option value={{$brand->id}} {{$product->brand_id == $brand->id ? 'selected' : ''}}>{{$brand->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="stock_qty" style="text-transform:capitalize">stock</label>
                             <input type="number" class="form-control" name="stock_qty" min="0" max="10000"
                                 step="1" value="{{ $product->stock_qty }}" />

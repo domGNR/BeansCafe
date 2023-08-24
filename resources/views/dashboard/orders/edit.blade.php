@@ -41,8 +41,7 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <form enctype="multipart/form-data" method="POST"
-                        action="{{ route('dashboard.orders.update', $order) }}">
+                    <form enctype="multipart/form-data" method="POST" action="{{ route('dashboard.orders.update', $order->id) }}">
                         @csrf
                         <div class="form-group">
                             <label for="name" style="text-transform:capitalize">nome</label>
@@ -55,6 +54,13 @@
                             <label for="surname" style="text-transform:capitalize">cognome</label>
                             <input type="text" class="form-control" name="surname" value="{{ $order->surname }}">
                             @error('surname')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="address" style="text-transform:capitalize">indirizzo</label>
+                            <input type="text" class="form-control" name="address" value="{{ $order->address }}">
+                            @error('address')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -92,11 +98,11 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <button class="btn btn-primary m-3 d-block">Aggiorna</button>
+                        <button class="btn btn-primary m-3 d-block {{$order->status_id==5 ? 'not-allowed disabled' : 'clickable-row'}}">Aggiorna</button>
                     </form>
                     <form action="{{route('dashboard.orders.cancel', $order)}}" enctype="multipart/form-data" method="POST">
                         @csrf
-                        <button class="btn btn-danger my-5 d-block">Annulla ordine</button>
+                        <button class="btn btn-danger my-5 d-block {{$order->status_id==5 ? 'not-allowed disabled' : 'clickable-row'}}">Annulla ordine</button>
                     </form>
                 </div>
             </div>
