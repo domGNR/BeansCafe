@@ -24,9 +24,8 @@
         <div class="ftco-footer-widget">
           <h2 class="ftco-heading-2">Social</h2>
           <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+            <li class="ftco-animate"><a href="https://www.facebook.com/profile.php?id=100094209877011&mibextid=ZbWKwL"><span class="icon-facebook"></span></a></li>
+            {{-- <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li> --}}
           </ul>
         </div>
       </div>
