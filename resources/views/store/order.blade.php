@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header bg-dark">
-                        <h4 class="title">Ordine N. {{$order->id}}</h4>
+                        <h4 class="title">Ordine N. {{$order->id}} - Tracking Code: {{$order->tracking}}</h4>
                     </div>
                     <div class="content table-responsive table-full-width bg-dark">
                         <table class="table table-hover table-striped">

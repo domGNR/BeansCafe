@@ -113,7 +113,7 @@ class OrderController extends Controller
         $order->surname = $request['surname'];
         $order->city = $request['city'];
         $order->zip = $request['zip'];
-        $order->zip = $request['address'];
+        $order->address = $request['address'];
         $order->tracking = $request['tracking'];
         $order->status_id = $request['status_id'];
         $order->save();

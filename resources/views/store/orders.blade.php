@@ -21,7 +21,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($orders as $order)
-                                    <tr class="clickable-row" data-href="{{ route('order.edit', $order->id) }}">
+                                    <tr class="clickable-row" style="cursor:pointer" data-href="{{ route('order.edit', $order->id) }}">
                                         <td>{{ $order->id }}</td>
                                         <td>{{ $order->name }}</td>
                                         <td>{{ $order->surname }}</td>
@@ -29,7 +29,7 @@
                                         <td>{{ $order->city }}</td>
                                         <td>{{ $order->zip }}</td>
                                         @foreach ($orderStatuses as $orderStatus)
-                                        @if ($order->id == $orderStatus->id)
+                                        @if ($order->status_id == $orderStatus->id)
                                             <td>{{ $orderStatus->name }}</td>
                                         @endif
                                         @endforeach
