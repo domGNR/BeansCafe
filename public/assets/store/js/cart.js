@@ -11,6 +11,10 @@ createItem = (code, name, price, qty) => {
     }
 }
 
+const emptyCart = () => {
+    localStorage.setItem('cart', '[]');
+}
+
 // Funzione per aggiungere un elemento al carrello
 addToCart = (item) => {
     // Recupera il carrello dal local storage

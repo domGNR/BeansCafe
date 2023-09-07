@@ -18,7 +18,7 @@
                 <li class="separator hidden-lg"></li>
                 <li>
                     <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
+                    onclick="event.preventDefault();localStorage.setItem('cart', '[]');
                                        document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                 </a>
