@@ -33,7 +33,7 @@
                                             <td>{{ $orderStatus->name }}</td>
                                         @endif
                                         @endforeach
-                                        <td>{{ $order->trackig }}</td>
+                                        <td>{{ $order->tracking }}</td>
                                         <td>€ {{ $order->total }}</td>
                                     </tr>
                                 @endforeach
