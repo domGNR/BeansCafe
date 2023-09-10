@@ -30,7 +30,7 @@ Route::get('/shop/cart/checkout',[HomeController::class,'checkout'])->name('stor
 Route::get('/orders',[OrderController::class,'index'])->name('order.index');
 Route::get('/orders/{order}',[OrderController::class,'edit'])->name('order.edit');
 Route::post('/orders/store',[OrderController::class,'store'])->name('order.store');
-
+Route::post('/orders/{order}/return', [OrderController::class,'returnOrder'])->name('order.return');
 
 // Users
 Route::get('/dashboard/users', [DashboardController::class,'indexUsers'])->name('dashboard.users.index');
@@ -68,6 +68,5 @@ Route::post('/dashboard/photos/{product}/cover/delete', [DashboardController::cl
 Route::get('/dashboard/orders', [DashboardController::class,'indexOrders'])->name('dashboard.orders.index');
 Route::get('/dashboard/orders/{order}', [DashboardController::class,'editOrder'])->name('dashboard.orders.edit');
 Route::post('/dashboard/orders/{order}/update', [DashboardController::class,'updateOrder'])->name('dashboard.orders.update');
+Route::post('/dashboard/orders/{order}/return', [DashboardController::class,'completeReturnOrder'])->name('dashboard.orders.return');
 Route::post('/dashboard/categories/{order}/cancel', [DashboardController::class,'cancelOrder'])->name('dashboard.orders.cancel');
-// Route::post('/dashboard/products/store', [DashboardController::class,'storeProduct'])->name('dashboard.products.store');
-// Route::post('/dashboard/products/{product}/update', [DashboardController::class,'updateProduct'])->name('dashboard.products.update');

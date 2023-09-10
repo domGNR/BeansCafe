@@ -28,11 +28,24 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td>Totale</td>
+                                    <td>Totale:</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>€ {{$order->total}}</td>
+                                    <td><span class="d-block py-2">€ {{$order->total}}</span>
+                                        @if ($order->status_id<5 && $order->status_id>0)
+                                            <form enctype="multipart/form-data" method="POST" action="{{ route('order.return', $order->id) }}">
+                                                @csrf
+                                                <button class="btn btn-primary">Effettua reso</button>
+                                            </form>
+                                        @endif
+                                        @if ($order->status_id==6)
+                                            <h5>RESO IN ELABORAZIONE</h5>
+                                        @endif
+                                        @if ($order->status_id==7)
+                                        <h5>RESO COMPLETATO</h5>
+                                        @endif
+                                    </td>
                                 </tr>
                             </tfoot>
                         </table>

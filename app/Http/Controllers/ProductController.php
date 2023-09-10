@@ -112,6 +112,7 @@ class ProductController extends Controller
         $product->price = $request['price'];
         $product->stock_qty = $request['stock_qty'];
         $product->category_id = $request['category_id'];
+        $product->is_show = $request['active'];
         if($request->has('cover_image') && $request->hasFile("cover_image")){
             // remove cover
             $photoPath = public_path("assets\\store\\images\\products\\".$product->cover);

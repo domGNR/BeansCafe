@@ -90,6 +90,14 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="activeSwitch" name="active"
+                                    {{$product->is_show ? 'checked' : ''}}>
+                                <label class="custom-control-label" for="activeSwitch">Mostra prodotto nello
+                                    shop</label>
+                            </div>
+                        </div>
                         <button class="btn btn-primary m-3 d-block">Aggiorna</button>
                     </form>
                     <form action="{{ route('dashboard.products.destroy', $product) }}" enctype="multipart/form-data"

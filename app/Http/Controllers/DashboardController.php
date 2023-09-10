@@ -241,4 +241,13 @@ class DashboardController extends Controller
         }
     }
 
+    function completeReturnOrder(Order $order)
+    {
+        $return = $this->orderController->completeReturnOrder($order);
+        if($return==true){
+            return redirect(route('dashboard.orders.index',$order))->with('success', 'I prodotti sono stati reinseriti correttamente');
+        }
+        else return redirect(route('dashboard.orders.index',$order))->with('error', 'Si è verificato un errore');
+    }
+
 }

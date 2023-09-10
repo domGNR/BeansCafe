@@ -98,11 +98,17 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <button class="btn btn-primary m-3 d-block {{$order->status_id==5 ? 'not-allowed disabled' : 'clickable-row'}}">Aggiorna</button>
+                        <button class="btn btn-primary m-3 d-block my-5 {{$order->status_id==5 ? 'not-allowed disabled' : 'clickable-row'}}">Aggiorna</button>
                     </form>
+                    @if ($order->status_id==6)
+                    <form action="{{route('dashboard.orders.return', $order)}}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <button class="btn btn-info my-5 d-block my-5">Conferma reso</button>
+                    </form>
+                    @endif
                     <form action="{{route('dashboard.orders.cancel', $order)}}" enctype="multipart/form-data" method="POST">
                         @csrf
-                        <button class="btn btn-danger my-5 d-block {{$order->status_id==5 ? 'not-allowed disabled' : 'clickable-row'}}">Annulla ordine</button>
+                        <button class="btn btn-danger my-5 d-block my-5 {{$order->status_id==5 ? 'not-allowed disabled' : 'clickable-row'}}">Annulla ordine</button>
                     </form>
                 </div>
             </div>

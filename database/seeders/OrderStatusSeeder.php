@@ -33,5 +33,13 @@ class OrderStatusSeeder extends Seeder
             'name' => 'annullato',
         ]);
 
+        DB::table('order_statuses')->insert([
+            'name' => 'reso avviato',
+        ]);
+
+        DB::table('order_statuses')->insert([
+            'name' => 'reso completato',
+        ]);
+
     }
 }
