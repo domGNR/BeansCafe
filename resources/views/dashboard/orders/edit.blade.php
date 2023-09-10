@@ -41,7 +41,8 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <form enctype="multipart/form-data" method="POST" action="{{ route('dashboard.orders.update', $order->id) }}">
+                    <form enctype="multipart/form-data" method="POST"
+                        action="{{ route('dashboard.orders.update', $order->id) }}">
                         @csrf
                         <div class="form-group">
                             <label for="name" style="text-transform:capitalize">nome</label>
@@ -87,7 +88,14 @@
                         </div>
                         <div class="form-group">
                             <label for="status_id" style="text-transform:capitalize">Stato ordine</label>
-                            <select class="form-control" {{$order->status_id == 5 || $order->status_id == 7 ? 'disabled': ''}} name="status_id" value="{{ $order->status_id }}">
+                            <select class="form-control"
+                                {{ $order->status_id == 5 || $order->status_id == 7 ? 'disabled' : '' }}
+                                name="status_id" value="{{ $order->status_id }}">
+                                @if ($order->status_id>0 && $order->status_id<5)
+                                    @foreach ($orderStatuses as $key => $value)
+                                            {{$orderStatuses->forget(6)}}
+                                    @endforeach
+                                @endif
                                 @foreach ($orderStatuses as $orderStatus)
                                     <option value={{ $orderStatus->id }}
                                         {{ $order->status_id == $orderStatus->id ? 'selected' : '' }}>
@@ -98,20 +106,24 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        @if ($order->status_id!=5 || $order->status_id!=6 )
-                        <button class="btn btn-primary m-3 d-block my-5 {{$order->status_id==5 ? 'not-allowed disabled' : 'clickable-row'}}">Aggiorna</button>
+                        @if ($order->status_id != 5 && $order->status_id != 7)
+                        <button class="btn btn-primary clickable-row">Aggiorna</button>
+                        @endif
+                        @if ($order->status_id != 5 && $order->status_id != 6  && $order->status_id != 7)
+                            <form action="{{ route('dashboard.orders.cancel', $order) }}" enctype="multipart/form-data"
+                                method="POST">
+                                @csrf
+                                <button
+                                    class="btn btn-danger {{ $order->status_id == 5 ? 'not-allowed disabled' : 'clickable-row' }}">Annulla
+                                    ordine</button>
+                            </form>
                         @endif
                     </form>
-                    @if ($order->status_id==6)
-                    <form action="{{route('dashboard.orders.return', $order)}}" enctype="multipart/form-data" method="POST">
+                    @if ($order->status_id == 6)
+                    <form action="{{ route('dashboard.orders.return', $order) }}" enctype="multipart/form-data"
+                        method="POST">
                         @csrf
-                        <button class="btn btn-info my-5 d-block my-5">Conferma reso</button>
-                    </form>
-                    @endif
-                    @if ($order->status_id!=5 || $order->status_id!=6 )
-                    <form action="{{route('dashboard.orders.cancel', $order)}}" enctype="multipart/form-data" method="POST">
-                        @csrf
-                        <button class="btn btn-danger my-5 d-block my-5 {{$order->status_id==5 ? 'not-allowed disabled' : 'clickable-row'}}">Annulla ordine</button>
+                        <button class="btn btn-info">Conferma reso</button>
                     </form>
                     @endif
                 </div>
