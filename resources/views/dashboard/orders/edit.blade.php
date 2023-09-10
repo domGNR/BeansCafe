@@ -87,7 +87,7 @@
                         </div>
                         <div class="form-group">
                             <label for="status_id" style="text-transform:capitalize">Stato ordine</label>
-                            <select class="form-control" name="status_id" value="{{ $order->status_id }}">
+                            <select class="form-control" {{$order->status_id == 5 || $order->status_id == 7 ? 'disabled': ''}} name="status_id" value="{{ $order->status_id }}">
                                 @foreach ($orderStatuses as $orderStatus)
                                     <option value={{ $orderStatus->id }}
                                         {{ $order->status_id == $orderStatus->id ? 'selected' : '' }}>

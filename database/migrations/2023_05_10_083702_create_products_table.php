@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('stock_qty');
             $table->float('price',2);
             $table->text("cover")->nullable();
-            $table->boolean('is_show');
+            $table->boolean('is_show')->default(false);
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('restrict');
             $table->unsignedBigInteger('category_id');
